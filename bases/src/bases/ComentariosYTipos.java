@@ -60,5 +60,9 @@ public class ComentariosYTipos {
 		BigDecimal bdDivision = bd3.divide(bd4, 2, RoundingMode.HALF_UP);
 		
 		System.out.println(bdDivision);
+		
+		long l = 2123123123123123L;
+		
+		System.out.println(l);
 	}
 }
