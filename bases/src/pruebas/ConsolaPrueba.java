@@ -13,11 +13,11 @@ public class ConsolaPrueba {
 		
 		System.out.println("Hola " + nombre);
 		
-		Integer i = leerInteger("Dime un número"); //, 1, 100);
+		Integer i = leerInteger("Dime un número", null, 100);
 		
 		System.out.println(i);
 		
-		Double d = leerDouble("Dime un número con decimales", 1, 100);
+		Double d = leerDouble("Dime un número con decimales", 1.0, 100.0);
 		
 		System.out.println(d);
 		
