@@ -1,18 +1,19 @@
 package pojos;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.Objects;
+
+import bibliotecas.Fechas;
 
 public class Persona {
 	// CONSTANTES
 	private static final String NOMBRE_POR_DEFECTO = "ANÓNIMO";
-	private static final int MAYORIA_DE_EDAD = 18;
+	protected static final int MAYORIA_DE_EDAD = 18;
 	
 	// VARIABLES DE INSTANCIA
-	private Long id;
-	private String nombre;
-	private LocalDate fechaNacimiento;
+	protected Long id;
+	protected String nombre;
+	protected LocalDate fechaNacimiento;
 
 	// CONSTRUCTORES
 	public Persona(Long id, String nombre, LocalDate fechaNacimiento) {
@@ -53,11 +54,11 @@ public class Persona {
 
 	public void setNombre(String nombre) {
 		if (nombre == null) {
-			throw new RuntimeException("El nombre no puede valer null");
+			throw new PojosException("El nombre no puede valer null");
 		}
 
 		if (nombre.isBlank()) {
-			throw new RuntimeException("No se admiten nombres en blanco");
+			throw new PojosException("No se admiten nombres en blanco");
 		}
 
 		this.nombre = nombre.trim();
@@ -69,7 +70,7 @@ public class Persona {
 
 	public void setFechaNacimiento(LocalDate fechaNacimiento) {
 		if (fechaNacimiento != null && fechaNacimiento.isAfter(LocalDate.now())) {
-			throw new RuntimeException("No se admiten fechas futuras");
+			throw new PojosException("No se admiten fechas futuras");
 		}
 
 		this.fechaNacimiento = fechaNacimiento;
@@ -77,11 +78,7 @@ public class Persona {
 
 	// MÉTODOS PROPIOS
 	public Integer getEdad() {
-		if (fechaNacimiento == null) {
-			return null;
-		}
-
-		return Period.between(fechaNacimiento, LocalDate.now()).getYears();
+		return Fechas.obtenerEdad(fechaNacimiento);
 	}
 	
 	public Boolean isMayorDeEdad() {

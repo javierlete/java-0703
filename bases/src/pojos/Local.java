@@ -45,17 +45,17 @@ public class Local {
 
 	public void setResponsable(Persona responsable) {
 		if (responsable == null) {
-			throw new RuntimeException("Es obligatorio dar un responsable");
+			throw new PojosException("Es obligatorio dar un responsable");
 		}
 
 		Boolean mayorDeEdad = responsable.isMayorDeEdad();
 
 		if (mayorDeEdad == null) {
-			throw new RuntimeException("El responsable debe tener fecha de nacimiento");
+			throw new PojosException("El responsable debe tener fecha de nacimiento");
 		}
 
 		if (!mayorDeEdad) {
-			throw new RuntimeException("Debe ser mayor de edad");
+			throw new PojosException("Debe ser mayor de edad");
 		}
 
 		this.responsable = responsable;
@@ -74,7 +74,7 @@ public class Local {
 
 	public void entrar(Persona visitante) {
 		if (visitante == null) {
-			throw new RuntimeException("Es obligatorio proporcionar una persona");
+			throw new PojosException("Es obligatorio proporcionar una persona");
 		}
 
 		visitantes.add(visitante);
