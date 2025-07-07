@@ -52,6 +52,10 @@ public class Consola {
 		return leerGenerico(mensaje, texto -> Long.parseLong(texto), minimo, maximo);
 	}
 	
+	public static LocalDate leerLocalDate(String mensaje) {
+		return leerGenerico(mensaje, texto -> LocalDate.parse(texto), null, null);
+	}
+	
 	public static LocalDate leerLocalDate(String mensaje, LocalDate minimo, LocalDate maximo) {
 		return leerGenerico(mensaje, texto -> LocalDate.parse(texto), minimo, maximo);
 	}
