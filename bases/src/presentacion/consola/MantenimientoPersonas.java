@@ -6,11 +6,11 @@ import static bibliotecas.Consola.leerLong;
 import static bibliotecas.Consola.leerString;
 
 import accesodatos.DaoPersona;
-import accesodatos.DaoPersonaSqlite3;
+import accesodatos.Fabrica;
 import pojos.Persona;
 
 public class MantenimientoPersonas {
-	private static final DaoPersona DAO = new DaoPersonaSqlite3("jdbc:sqlite:bdd/ejemplo.db");
+	private static final DaoPersona DAO = (DaoPersona) Fabrica.obtener();
 	
 	private static final int SALIR = 0;
 
