@@ -6,11 +6,11 @@ import static bibliotecas.Consola.leerLong;
 import static bibliotecas.Consola.leerString;
 
 import accesodatos.DaoPersona;
-import accesodatos.Fabrica;
+import bibliotecas.Fabrica;
 import pojos.Persona;
 
 public class MantenimientoPersonas {
-	private static final DaoPersona DAO = (DaoPersona) Fabrica.obtener();
+	private static final DaoPersona DAO = (DaoPersona) Fabrica.obtener("dao.clase", "dao.url");
 	
 	private static final int SALIR = 0;
 
