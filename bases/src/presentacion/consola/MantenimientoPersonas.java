@@ -6,11 +6,11 @@ import static bibliotecas.Consola.leerLong;
 import static bibliotecas.Consola.leerString;
 
 import accesodatos.DaoPersona;
-import accesodatos.DaoPersonaTreeMap;
+import accesodatos.DaoPersonaSqlite;
 import pojos.Persona;
 
 public class MantenimientoPersonas {
-	private static final DaoPersona DAO = new DaoPersonaTreeMap();
+	private static final DaoPersona DAO = new DaoPersonaSqlite();
 	
 	private static final int SALIR = 0;
 
