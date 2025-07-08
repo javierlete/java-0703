@@ -1,0 +1,64 @@
+package bibliotecas;
+
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.function.Function;
+
+public class BaseDeDatos {
+	private String url;
+	private String user;
+	private String pass;
+	
+	public BaseDeDatos(String url, String user, String pass) {
+		this.url = url;
+		this.user = user;
+		this.pass = pass;
+	}
+
+	public <T> Iterable<T> ejecutarSql(String sql, Object... parametros) {
+		return ejecutarSql(sql, null, parametros);
+	}
+	
+	public <T> Optional<T> ejecutarSqlUno(String sql, Function<ResultSet, T> mapeador, Object... parametros) {
+		var resultado = ejecutarSql(sql, mapeador, parametros);
+
+		if (resultado.iterator().hasNext()) {
+			return Optional.of(resultado.iterator().next());
+		} else {
+			return Optional.empty();
+		}
+	}
+	
+	public <T> Iterable<T> ejecutarSql(String sql, Function<ResultSet, T> mapeador, Object... parametros) {
+		try (var con = DriverManager.getConnection(url, user, pass); var pst = con.prepareStatement(sql);) {
+
+			var i = 1;
+
+			for (var parametro : parametros) {
+				pst.setObject(i++, parametro);
+			}
+
+			if (!sql.startsWith("SELECT")) {
+				pst.executeUpdate();
+				return null;
+			}
+
+			var rs = pst.executeQuery();
+			var objetos = new ArrayList<T>();
+
+			while (rs.next()) {
+				var objeto = mapeador.apply(rs); 
+				
+				objetos.add(objeto);
+			}
+
+			return objetos;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Ha habido un problema con la operación DAO", e);
+		}
+	}
+
+}
