@@ -1,4 +1,4 @@
-package accesodatos;
+package bibliotecas;
 
 public class AccesoDatosException extends RuntimeException {
 	private static final long serialVersionUID = -3447760441911950708L;

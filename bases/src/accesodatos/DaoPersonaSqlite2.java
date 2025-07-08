@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import bibliotecas.AccesoDatosException;
 import pojos.Persona;
 
 public class DaoPersonaSqlite2 implements DaoPersona {
