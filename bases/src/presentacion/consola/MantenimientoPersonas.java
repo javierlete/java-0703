@@ -104,7 +104,7 @@ public class MantenimientoPersonas {
 		
 		var persona = new Persona(null, nombre, fechaNacimiento, rol);
 		
-		DAO.insertar(persona);
+		System.out.println(DAO.insertar(persona));
 	}
 
 	private static void modificar() {

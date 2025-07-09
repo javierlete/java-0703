@@ -3,7 +3,9 @@ package bibliotecas;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -33,7 +35,7 @@ public class BaseDeDatos {
 	}
 	
 	public <T> Iterable<T> ejecutarSql(String sql, Function<ResultSet, T> mapeador, Object... parametros) {
-		try (var con = DriverManager.getConnection(url, user, pass); var pst = con.prepareStatement(sql);) {
+		try (var con = DriverManager.getConnection(url, user, pass); var pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
 
 			var i = 1;
 
@@ -43,6 +45,15 @@ public class BaseDeDatos {
 
 			if (!sql.startsWith("SELECT")) {
 				pst.executeUpdate();
+				
+				if(sql.startsWith("INSERT")) {
+					var rs = pst.getGeneratedKeys();
+					
+					rs.next();
+					
+					return List.of(mapeador.apply(rs));
+				}
+				
 				return null;
 			}
 

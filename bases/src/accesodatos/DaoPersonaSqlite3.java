@@ -36,8 +36,17 @@ public class DaoPersonaSqlite3 implements DaoPersona {
 
 	@Override
 	public Persona insertar(Persona persona) {
-		bdd.ejecutarSql("INSERT INTO personas (nombre, fecha_nacimiento, rol_id) VALUES (?,?,?)", objetoAFila(persona));
-		return persona;
+		return bdd.ejecutarSqlUno("INSERT INTO personas (nombre, fecha_nacimiento, rol_id) VALUES (?,?,?)", rs -> mapeadorInsercion(persona, rs), objetoAFila(persona)).get();
+	}
+
+	private Persona mapeadorInsercion(Persona persona, ResultSet rs) {
+		try {
+			persona.setId(rs.getLong(1));
+			
+			return persona;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error en el mapeado", e);
+		}
 	}
 
 	@Override
