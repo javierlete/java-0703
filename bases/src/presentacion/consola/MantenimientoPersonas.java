@@ -9,6 +9,7 @@ import accesodatos.DaoPersona;
 import accesodatos.DaoRol;
 import bibliotecas.Fabrica;
 import pojos.Persona;
+import pojos.Rol;
 
 public class MantenimientoPersonas {
 	private static final DaoPersona DAO = (DaoPersona) Fabrica.obtener("dao.persona", "dao.url");
@@ -95,7 +96,11 @@ public class MantenimientoPersonas {
 		var nombre = leerString("Nombre");
 		var fechaNacimiento = leerLocalDate("Fecha de nacimiento");
 		
-		var persona = new Persona(nombre, fechaNacimiento);
+		listadoRoles();
+		
+		var rol = new Rol(leerLong("Id de rol"), null, null);
+		
+		var persona = new Persona(null, nombre, fechaNacimiento, rol);
 		
 		DAO.insertar(persona);
 	}
@@ -105,7 +110,11 @@ public class MantenimientoPersonas {
 		var nombre = leerString("Nombre");
 		var fechaNacimiento = leerLocalDate("Fecha de nacimiento");
 		
-		var persona = new Persona(id, nombre, fechaNacimiento);
+		listadoRoles();
+		
+		var rol = new Rol(leerLong("Id de rol"), null, null);
+		
+		var persona = new Persona(id, nombre, fechaNacimiento, rol);
 		
 		DAO.modificar(persona);
 	}
