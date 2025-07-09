@@ -3,10 +3,12 @@ package accesodatos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import bibliotecas.AccesoDatosException;
 import bibliotecas.BaseDeDatos;
+import bibliotecas.Fabrica;
 import pojos.Persona;
 import pojos.Rol;
 
@@ -54,17 +56,45 @@ public class DaoPersonaSqlite3 implements DaoPersona {
 		return bdd.ejecutarSql(SQL_SELECT + "WHERE p_nombre LIKE ?", rs -> filaAObjeto(rs), "%" + texto + "%");
 	}
 
+	@Override
+	public Iterable<Persona> buscarPorRol(Long idRol) {
+		// return bdd.ejecutarSql(SQL_SELECT + "WHERE r_id=?", rs-> filaAObjeto(rs),
+		// idRol);
+		var daoRol = (DaoRol) Fabrica.obtener("dao.rol", "dao.url");
+		
+		var rol = daoRol.obtenerPorId(idRol);
+		
+		if(rol.isEmpty()) {
+			return new ArrayList<Persona>();
+		}
+		
+		return bdd.ejecutarSql("SELECT * FROM personas WHERE rol_id=?", rs -> filaAObjetoSimple(rs, rol.get()), idRol);
+	}
+
+	private Persona filaAObjetoSimple(ResultSet rs, Rol rol) {
+		try {
+			var id = rs.getLong("id");
+			var nombre = rs.getString("nombre");
+			var strFechaNacimiento = rs.getString("fecha_nacimiento");
+			var fechaNacimiento = LocalDate.parse(strFechaNacimiento);
+
+			return new Persona(id, nombre, fechaNacimiento, rol);
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error en el mapeado simple", e);
+		}
+	}
+
 	private Persona filaAObjeto(ResultSet rs) {
 		try {
 			var id = rs.getLong("p_id");
 			var nombre = rs.getString("p_nombre");
 			var strFechaNacimiento = rs.getString("p_fecha_nacimiento");
 			var fechaNacimiento = LocalDate.parse(strFechaNacimiento);
-			
+
 			var rolId = rs.getLong("r_id");
 			var rolNombre = rs.getString("r_nombre");
 			var rolDescripcion = rs.getString("r_descripcion");
-			
+
 			var rol = new Rol(rolId, rolNombre, rolDescripcion);
 
 			return new Persona(id, nombre, fechaNacimiento, rol);
@@ -75,9 +105,11 @@ public class DaoPersonaSqlite3 implements DaoPersona {
 
 	private Object[] objetoAFila(Persona persona) {
 		if (persona.getId() != null) {
-			return new Object[] { persona.getNombre(), persona.getFechaNacimiento().toString(), persona.getRol().getId(), persona.getId() };
+			return new Object[] { persona.getNombre(), persona.getFechaNacimiento().toString(),
+					persona.getRol().getId(), persona.getId() };
 		} else {
-			return new Object[] { persona.getNombre(), persona.getFechaNacimiento().toString(), persona.getRol().getId() };
+			return new Object[] { persona.getNombre(), persona.getFechaNacimiento().toString(),
+					persona.getRol().getId() };
 		}
 	}
 }

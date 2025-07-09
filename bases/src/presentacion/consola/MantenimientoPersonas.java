@@ -38,6 +38,7 @@ public class MantenimientoPersonas {
 				6. Borrar
 				
 				7. Listado roles
+				8. Listado de personas de un rol
 				
 				0. Salir
 				""");
@@ -59,6 +60,7 @@ public class MantenimientoPersonas {
 		case 5 -> modificar();
 		case 6 -> borrar();
 		case 7 -> listadoRoles();
+		case 8 -> listadoPersonasPorRol();
 		case 0 -> System.out.println("Gracias por usar el programa");
 		default -> System.out.println("Opción no reconocida");
 		}
@@ -128,6 +130,16 @@ public class MantenimientoPersonas {
 	private static void listadoRoles() {
 		for(var rol: DAO_ROL.obtenerTodos()) {
 			System.out.println(rol);
+		}
+	}
+
+	private static void listadoPersonasPorRol() {
+		listadoRoles();
+		
+		var id = leerLong("Id de rol");
+		
+		for(var persona: DAO.buscarPorRol(id)) {
+			System.out.println(persona);
 		}
 	}
 }
