@@ -85,7 +85,7 @@ public class Consola {
 				}
 			} catch (Exception e) {
 				System.out.println("El formato no es correcto");
-				e.printStackTrace();
+				// e.printStackTrace();
 			}
 		} while (!correcto);
 
