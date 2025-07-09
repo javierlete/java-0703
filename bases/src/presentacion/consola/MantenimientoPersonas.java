@@ -6,11 +6,13 @@ import static bibliotecas.Consola.leerLong;
 import static bibliotecas.Consola.leerString;
 
 import accesodatos.DaoPersona;
+import accesodatos.DaoRol;
 import bibliotecas.Fabrica;
 import pojos.Persona;
 
 public class MantenimientoPersonas {
-	private static final DaoPersona DAO = (DaoPersona) Fabrica.obtener("dao.clase", "dao.url");
+	private static final DaoPersona DAO = (DaoPersona) Fabrica.obtener("dao.persona", "dao.url");
+	private static final DaoRol DAO_ROL = (DaoRol) Fabrica.obtener("dao.rol", "dao.url");
 	
 	private static final int SALIR = 0;
 
@@ -34,6 +36,8 @@ public class MantenimientoPersonas {
 				5. Modificar
 				6. Borrar
 				
+				7. Listado roles
+				
 				0. Salir
 				""");
 	}
@@ -53,6 +57,7 @@ public class MantenimientoPersonas {
 		case 4 -> insertar();
 		case 5 -> modificar();
 		case 6 -> borrar();
+		case 7 -> listadoRoles();
 		case 0 -> System.out.println("Gracias por usar el programa");
 		default -> System.out.println("Opción no reconocida");
 		}
@@ -109,5 +114,11 @@ public class MantenimientoPersonas {
 		var id = leerLong("Dime el id a borrar");
 		
 		DAO.borrar(id);
+	}
+
+	private static void listadoRoles() {
+		for(var rol: DAO_ROL.obtenerTodos()) {
+			System.out.println(rol);
+		}
 	}
 }
