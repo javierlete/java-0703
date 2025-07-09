@@ -1,11 +1,15 @@
 package pojos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Rol {
 	private Long id;
 	private String nombre;
 	private String descripcion;
+	
+	private List<Persona> personas = new ArrayList<>(); 
 
 	public Rol(Long id, String nombre, String descripcion) {
 		super();
@@ -36,6 +40,10 @@ public class Rol {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public List<Persona> getPersonas() {
+		return personas;
 	}
 
 	@Override
