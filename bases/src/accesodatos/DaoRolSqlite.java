@@ -27,10 +27,19 @@ public class DaoRolSqlite implements DaoRol {
 
 	@Override
 	public Rol insertar(Rol rol) {
-		bdd.ejecutarSql("INSERT INTO roles (nombre, descripcion) VALUES (?,?)", objetoAFila(rol));
-		return rol;
+		return bdd.ejecutarSqlUno("INSERT INTO roles (nombre, descripcion) VALUES (?,?)", rs -> mapeadorInsercion(rol, rs), objetoAFila(rol)).get();
 	}
 
+	private Rol mapeadorInsercion(Rol rol, ResultSet rs) {
+		try {
+			rol.setId(rs.getLong(1));
+			
+			return rol;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error en el mapeado", e);
+		}
+	}
+	
 	@Override
 	public Rol modificar(Rol rol) {
 		bdd.ejecutarSql("UPDATE roles SET nombre=?, descripcion=? WHERE id=?", objetoAFila(rol));
