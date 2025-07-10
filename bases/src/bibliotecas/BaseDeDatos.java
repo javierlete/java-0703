@@ -18,6 +18,14 @@ public class BaseDeDatos {
 		this.url = url;
 		this.user = user;
 		this.pass = pass;
+		
+		if(url.contains(":sqlite:")) {
+			try {
+				Class.forName("org.sqlite.JDBC");
+			} catch (ClassNotFoundException e) {
+				throw new AccesoDatosException("No se ha encontrado el driver de SQLite");
+			}
+		}
 	}
 
 	public <T> Iterable<T> ejecutarSql(String sql, Object... parametros) {
