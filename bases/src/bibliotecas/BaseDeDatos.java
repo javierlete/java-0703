@@ -76,7 +76,7 @@ public class BaseDeDatos {
 
 			return objetos;
 		} catch (SQLException e) {
-			throw new AccesoDatosException("Ha habido un problema con la operación DAO", e);
+			throw new AccesoDatosException("Ha habido un problema con la operación DAO. " + url, e);
 		}
 	}
 
