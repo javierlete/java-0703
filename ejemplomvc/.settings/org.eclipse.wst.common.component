@@ -2,6 +2,9 @@
     <wb-module deploy-name="ejemplomvc">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="bases.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/bases/bases">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="ejemplomvc"/>
         <property name="java-output-path" value="/ejemplomvc/build/classes"/>
     </wb-module>
