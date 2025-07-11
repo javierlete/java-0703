@@ -1,11 +1,10 @@
 package com.ipartek.formacion.ejemploweb.controladores;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.util.List;
 
-import com.ipartek.formacion.ejemploweb.modelos.Producto;
+import com.ipartek.formacion.ejemploweb.accesodatos.DaoProductoSqlite;
 
+import bibliotecas.Fabrica;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,11 +21,8 @@ public class ListadoServlet extends HttpServlet {
 //		Convertir la información
 //		Crear objetos de modelo
 //		Ejecutar lógica de negocio
-		var productos = List.of(
-				new Producto(1L, "Portátil", new BigDecimal("1234.12")),
-				new Producto(2L, "Monitor", new BigDecimal("234.12")),
-				new Producto(3L, "Ratón", new BigDecimal("34.12"))
-		);
+		var dao = (DaoProductoSqlite)Fabrica.obtener("ejemplomvc.dao.producto", "ejemplomvc.dao.url");
+		var productos = dao.obtenerTodos();
 
 //		Empaquetar modelo para la vista
 		request.setAttribute("productos", productos);

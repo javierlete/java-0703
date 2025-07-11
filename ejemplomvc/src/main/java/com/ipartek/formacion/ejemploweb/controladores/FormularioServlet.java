@@ -3,8 +3,10 @@ package com.ipartek.formacion.ejemploweb.controladores;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+import com.ipartek.formacion.ejemploweb.accesodatos.DaoProductoSqlite;
 import com.ipartek.formacion.ejemploweb.modelos.Producto;
 
+import bibliotecas.Fabrica;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -39,7 +41,8 @@ public class FormularioServlet extends HttpServlet {
 		Producto producto = new Producto(null, nombre, precio);
 		
 //		Ejecutar lógica de negocio
-		System.out.println(producto);
+		var dao = (DaoProductoSqlite)Fabrica.obtener("ejemplomvc.dao.producto", "ejemplomvc.dao.url");
+		dao.insertar(producto);
 		
 //		Empaquetar modelo para la vista
 //		Saltar a la siguiente vista
