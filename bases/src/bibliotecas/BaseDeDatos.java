@@ -80,4 +80,13 @@ public class BaseDeDatos {
 		}
 	}
 
+	public static <T extends Identificable> T mapeadorInsercion(T objeto, ResultSet rs) {
+		try {
+			objeto.setId(rs.getLong(1));
+			
+			return objeto;
+		} catch (SQLException e) {
+			throw new AccesoDatosException("Error en el mapeado", e);
+		}
+	}
 }

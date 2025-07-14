@@ -16,7 +16,7 @@ public class DaoProductoSqlite implements DaoProducto {
 	public DaoProductoSqlite(String url) {
 		bdd = new BaseDeDatos(url, null, null);
 	}
-	
+
 	@Override
 	public Iterable<Producto> obtenerTodos() {
 		return bdd.ejecutarSql("SELECT * FROM productos", rs -> filaAObjeto(rs));
@@ -29,7 +29,8 @@ public class DaoProductoSqlite implements DaoProducto {
 
 	@Override
 	public Producto insertar(Producto producto) {
-		return bdd.ejecutarSqlUno("INSERT INTO productos (nombre, precio) VALUES (?,?)", rs -> mapeadorInsercion(producto, rs), objetoAFila(producto)).get();
+		return bdd.ejecutarSqlUno("INSERT INTO productos (nombre, precio) VALUES (?,?)",
+				rs -> BaseDeDatos.mapeadorInsercion(producto, rs), objetoAFila(producto)).get();
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class DaoProductoSqlite implements DaoProducto {
 			var nombre = rs.getString("nombre");
 			var sPrecio = rs.getString("precio");
 			var precio = new BigDecimal(sPrecio);
-			
+
 			return new Producto(id, nombre, precio);
 		} catch (SQLException e) {
 			throw new AccesoDatosException("Error en el mapeado", e);
@@ -63,15 +64,4 @@ public class DaoProductoSqlite implements DaoProducto {
 			return new Object[] { producto.getNombre(), producto.getPrecio() };
 		}
 	}
-	
-	private Producto mapeadorInsercion(Producto producto, ResultSet rs) {
-		try {
-			producto.setId(rs.getLong(1));
-			
-			return producto;
-		} catch (SQLException e) {
-			throw new AccesoDatosException("Error en el mapeado", e);
-		}
-	}
-	
 }

@@ -3,7 +3,9 @@ package com.ipartek.formacion.ejemploweb.modelos;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-public class Producto {
+import bibliotecas.Identificable;
+
+public class Producto implements Identificable {
 	private Long id;
 	private String nombre;
 	private BigDecimal precio;
