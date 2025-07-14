@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebFilter("/formulario")
+@WebFilter("/admin/*")
 public class AdminFilter extends HttpFilter {
 
 	private static final long serialVersionUID = 4965706796847728485L;
@@ -20,7 +20,7 @@ public class AdminFilter extends HttpFilter {
 		var usuario = request.getSession().getAttribute("usuario");
 		
 		if(usuario == null) {
-			response.sendRedirect("login");
+			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
 		
