@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
-<ul>
-	<c:forEach items="${productos}" var="producto">
-		<li>${producto.nombre}: ${producto.precio}</li>
-	</c:forEach>
-</ul>
+
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
