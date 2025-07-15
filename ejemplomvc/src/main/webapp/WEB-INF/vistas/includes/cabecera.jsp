@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <fmt:setLocale value="es-ES" />
 <!DOCTYPE html>
 <html lang="es" class="h-100">
@@ -41,6 +42,8 @@
 						</c:when>
 
 						<c:otherwise>
+							<li class="nav-item"><a class="nav-link"
+								href="admin/listado">Listado</a></li>
 							<li class="nav-item"><a class="nav-link"
 								href="admin/formulario">Formulario</a></li>
 							<li class="navbar-text">${sessionScope.usuario.nombre}</li>
