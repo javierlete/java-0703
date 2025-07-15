@@ -4,7 +4,9 @@
 
 <ul>
 	<c:forEach items="${productos}" var="producto">
-		<li><a href="detalle?id=${producto.id}">${producto.nombre}</a>: ${producto.precio}</li>
+		<li><a href="detalle?id=${producto.id}">${producto.nombre}</a>:
+			<fmt:formatNumber type="currency" value="${producto.precio}"/>
+		</li>
 	</c:forEach>
 </ul>
 
