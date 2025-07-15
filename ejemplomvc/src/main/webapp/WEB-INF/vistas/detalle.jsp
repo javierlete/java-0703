@@ -2,10 +2,15 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
 
-<ul>
-	<c:forEach items="${productos}" var="producto">
-		<li><a href="detalle?id=${producto.id}">${producto.nombre}</a>: ${producto.precio}</li>
-	</c:forEach>
-</ul>
+<dl>
+	<dt>Nombre</dt>
+	<dd>${producto.nombre}</dd>
+	<dt>Precio</dt>
+	<dd>${producto.precio}</dd>
+</dl>
+
+<div>
+	<a href="carrito?id=${producto.id}">Añadir al carrito</a>
+</div>
 
 <%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
