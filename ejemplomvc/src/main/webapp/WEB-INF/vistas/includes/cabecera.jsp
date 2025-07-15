@@ -10,6 +10,8 @@
 <title>Tienda</title>
 <base href="${pageContext.request.contextPath}/">
 
+<link rel="icon" href="iconos/cart3.svg">
+
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <script src="js/bootstrap.bundle.min.js"></script>
 
