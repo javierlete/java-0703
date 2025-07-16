@@ -56,7 +56,16 @@ public class ProductoServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		
 		var jsonReader = request.getReader();
-		var producto = GSON.fromJson(jsonReader, Producto.class);
+		var productoRecibido = GSON.fromJson(jsonReader, Producto.class);
+		var producto = new Producto(productoRecibido);
+		
+		if(producto.hayErrores()) {
+			var json = GSON.toJson(producto);
+
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().append(json);
+			return;
+		}
 		
 		var insertado = DAO.insertar(producto);
 		var json = GSON.toJson(insertado);
@@ -79,7 +88,16 @@ public class ProductoServlet extends HttpServlet {
 		}
 		
 		var jsonReader = request.getReader();
-		var producto = GSON.fromJson(jsonReader, Producto.class);
+		var productoRecibido = GSON.fromJson(jsonReader, Producto.class);
+		var producto = new Producto(productoRecibido);
+		
+		if(producto.hayErrores()) {
+			var json = GSON.toJson(producto);
+
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			response.getWriter().append(json);
+			return;
+		}
 		
 		if(id != producto.getId()) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

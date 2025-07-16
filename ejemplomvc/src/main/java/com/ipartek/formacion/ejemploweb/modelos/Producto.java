@@ -14,6 +14,10 @@ public class Producto implements Identificable {
 	
 	private Map<String, String> errores = new HashMap<>();
 
+	public Producto(Producto producto) {
+		this(producto.id, producto.nombre, producto.precio);
+	}
+	
 	public Producto(String id, String nombre, String precio) {
 		setId(id);
 		setNombre(nombre);
@@ -102,7 +106,7 @@ public class Producto implements Identificable {
 
 	@Override
 	public String toString() {
-		return String.format("Producto [id=%s, nombre=%s, precio=%s]", id, nombre, precio);
+		return String.format("Producto [id=%s, nombre=%s, precio=%s, errores=%s]", id, nombre, precio, errores);
 	}
 
 }
