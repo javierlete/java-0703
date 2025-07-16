@@ -8,6 +8,7 @@
 <html lang="es" class="h-100">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tienda</title>
 <base href="${pageContext.request.contextPath}/">
 
