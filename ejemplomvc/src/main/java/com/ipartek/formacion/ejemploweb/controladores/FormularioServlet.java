@@ -1,7 +1,6 @@
 package com.ipartek.formacion.ejemploweb.controladores;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 
 import com.ipartek.formacion.ejemploweb.accesodatos.DaoProductoSqlite;
 import com.ipartek.formacion.ejemploweb.modelos.Producto;
@@ -42,21 +41,24 @@ public class FormularioServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		Recoger información de la petición
-		String sId = request.getParameter("id");
+		String id = request.getParameter("id");
 		String nombre = request.getParameter("nombre");
-		String sPrecio = request.getParameter("precio");
+		String precio = request.getParameter("precio");
 
 //		Convertir la información
-		Long id = sId.isBlank() ? null : Long.parseLong(sId);
-		BigDecimal precio = new BigDecimal(sPrecio);
-
 //		Crear objetos de modelo
 		Producto producto = new Producto(id, nombre, precio);
 
 //		Ejecutar lógica de negocio
+		if(producto.hayErrores()) {
+			request.setAttribute("producto", producto);
+			request.getRequestDispatcher("/WEB-INF/vistas/formulario.jsp").forward(request, response);
+			return;
+		}
+		
 		var dao = (DaoProductoSqlite) Fabrica.obtener("ejemplomvc.dao.producto", "ejemplomvc.dao.url");
 
-		if (id == null) {
+		if (producto.getId() == null) {
 			dao.insertar(producto);
 		} else {
 			dao.modificar(producto);

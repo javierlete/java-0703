@@ -10,6 +10,7 @@
 		<div class="col-sm-10">
 			<input type="text" class="form-control" id="nombre" name="nombre"
 				value="${fn:escapeXml(producto.nombre)}">
+			<div class="text-danger">${producto.errores.nombre}</div>
 		</div>
 	</div>
 	<div class="row mb-3">
@@ -17,6 +18,7 @@
 		<div class="col-sm-10">
 			<input type="number" step=".01" class="form-control" id="precio"
 				name="precio" value="${producto.precio}">
+			<div class="text-danger">${producto.errores.precio}</div>
 		</div>
 	</div>
 	<div class="row mb-3">
