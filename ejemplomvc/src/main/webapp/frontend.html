@@ -1,25 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" class="h-100">
 <head>
 <meta charset="UTF-8">
-<title>Frontend</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tienda</title>
 
 <link rel="icon" href="iconos/cart3.svg">
+
+<link rel="stylesheet" href="css/bootstrap-icons.min.css">
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap.bundle.min.js"></script>
 
 <script defer src="js/frontend.js"></script>
 </head>
 <body>
 
-<form>
-	<input name="nombre">
-	<input name="precio">
-	
-	<button>Guardar</button>
+<main class="container">
+
+<form action="admin/formulario" method="post" novalidate>
+	<input type="hidden" name="id">
+
+	<div class="row mb-3">
+		<label for="nombre" class="col-sm-2 col-form-label">Nombre</label>
+		<div class="col-sm-10">
+			<input required type="text" class="form-control" id="nombre" name="nombre">
+			<div class="invalid-feedback">El nombre es obligatorio</div>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<label for="precio" class="col-sm-2 col-form-label">Precio</label>
+		<div class="col-sm-10">
+			<input required min="0" type="number" step=".01" class="form-control" id="precio"
+				name="precio">
+			<div class="invalid-feedback">El precio debe ser un número positivo</div>
+		</div>
+	</div>
+	<div class="row mb-3">
+		<div class="offset-sm-2 col-sm-10">
+			<button type="submit" class="btn btn-primary">Guardar</button>
+		</div>
+	</div>
 </form>
 
-<ul>
+<div id="listado" class="row row-cols-1 row-cols-md-3 g-4">
 
-</ul>
+
+</div>
+
+</main>
 
 </body>
 </html>
