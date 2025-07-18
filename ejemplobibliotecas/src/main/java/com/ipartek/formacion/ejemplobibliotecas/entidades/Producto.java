@@ -1,4 +1,4 @@
-package com.ipartek.formacion.ejemplobibliotecas.modelos;
+package com.ipartek.formacion.ejemplobibliotecas.entidades;
 
 import java.math.BigDecimal;
 

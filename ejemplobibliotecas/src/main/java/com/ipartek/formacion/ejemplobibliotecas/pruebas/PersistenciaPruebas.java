@@ -3,7 +3,7 @@ package com.ipartek.formacion.ejemplobibliotecas.pruebas;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.ipartek.formacion.ejemplobibliotecas.modelos.Producto;
+import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;

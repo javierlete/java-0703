@@ -3,8 +3,8 @@ package com.ipartek.formacion.ejemplobibliotecas.pruebas;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import com.ipartek.formacion.ejemplobibliotecas.modelos.Producto;
-import com.ipartek.formacion.ejemplobibliotecas.modelos.Usuario;
+import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
+import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
 
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;

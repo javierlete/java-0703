@@ -2,7 +2,7 @@ package com.ipartek.formacion.ejemplobibliotecas.pruebas;
 
 import java.math.BigDecimal;
 
-import com.ipartek.formacion.ejemplobibliotecas.modelos.Producto;
+import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 
 public class ProductoPrueba {
 	public static void main(String[] args) {
