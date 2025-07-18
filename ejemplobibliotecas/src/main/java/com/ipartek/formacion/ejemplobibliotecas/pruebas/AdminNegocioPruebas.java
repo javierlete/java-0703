@@ -9,6 +9,7 @@ import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
 import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AdminNegocio;
 import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AdminNegocioImpl;
+import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.LogicaNegocioException;
 
 public class AdminNegocioPruebas {
 
@@ -51,6 +52,14 @@ public class AdminNegocioPruebas {
 		
 		for (var p : negocio.obtenerListadoProductos()) {
 			System.out.println(p);
+		}
+		
+		try {
+			negocio.insertarProducto(Producto.builder().build());
+		} catch (LogicaNegocioException ex) {
+			for(var e: ex.getErrores()) {
+				System.out.println(e.getPropertyPath() + ": " + e.getMessage());
+			}
 		}
 	}
 
