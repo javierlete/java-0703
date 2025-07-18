@@ -9,7 +9,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.Persistence;
 
 public class DaoJpa<T> {
-	private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("com.ipartek.formacion.ejemplobibliotecas.modelos");
+	private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("DaoJpa");
 	
 	private Class<T> tipo;
 	
