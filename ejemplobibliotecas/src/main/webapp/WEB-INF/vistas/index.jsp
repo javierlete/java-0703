@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,9 +9,13 @@
 </head>
 <body>
 
-<c:forEach items="${productos}" var="p">
-	<p>${p}</p>
-</c:forEach>
+	<h1>${usuario.nombre}</h1>
+
+	<ul>
+		<c:forEach items="${productos}" var="p">
+			<li>${p.nombre}:${p.precio}</li>
+		</c:forEach>
+	</ul>
 
 </body>
 </html>
