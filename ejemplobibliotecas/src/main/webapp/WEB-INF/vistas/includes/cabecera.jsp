@@ -3,6 +3,7 @@
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
 <%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="jl" %>
 <fmt:setLocale value="es-ES" />
 <!DOCTYPE html>
 <html lang="es" class="h-100">
@@ -44,9 +45,9 @@
 
 						<c:otherwise>
 							<li class="nav-item"><a class="nav-link"
-								href="admin/listado">Listado</a></li>
+								href="fc/admin/listado">Listado</a></li>
 							<li class="nav-item"><a class="nav-link"
-								href="admin/formulario">Formulario</a></li>
+								href="fc/admin/formulario">Formulario</a></li>
 							<li class="navbar-text">${sessionScope.usuario.nombre}</li>
 							<li class="nav-item"><a class="nav-link" href="logout">Logout</a></li>
 						</c:otherwise>

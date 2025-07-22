@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
-	<h1>${usuario.nombre}</h1>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+	<c:forEach items="${productos}" var="producto">
+		<jl:tarjeta imagen="https://picsum.photos/400/300?${producto.id}"
+			titulo="${producto.nombre}" descripcion="BLABLABLA"
+			enlace="detalle?id=${producto.id}" pie="${producto.precio}" />
+	</c:forEach>
+</div>
 
-	<ul>
-		<c:forEach items="${productos}" var="p">
-			<li>${p.nombre}:${p.precio}</li>
-		</c:forEach>
-	</ul>
-
-<%@ include file="/WEB-INF/vistas/includes/pie.jsp" %>
+<%@ include file="/WEB-INF/vistas/includes/pie.jsp"%>
