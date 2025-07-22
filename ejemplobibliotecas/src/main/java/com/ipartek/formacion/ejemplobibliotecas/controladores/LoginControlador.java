@@ -14,10 +14,10 @@ public class LoginControlador implements Controlador {
 	public String ejecutar(String metodo, Map<String, String[]> mapaEntrada, Map<String, Object> mapaSalida,
 			Map<String, Object> sesionEntrada, Map<String, Object> sesionSalida) {
 
-		if("GET".equals(metodo)) {
+		if ("GET".equals(metodo)) {
 			return "/login";
 		}
-		
+
 		String email = mapaEntrada.get("email")[0];
 		String password = mapaEntrada.get("password")[0];
 
