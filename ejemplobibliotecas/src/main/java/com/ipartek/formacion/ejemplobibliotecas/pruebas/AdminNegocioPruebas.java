@@ -14,7 +14,7 @@ import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.LogicaNegocioExcep
 public class AdminNegocioPruebas {
 
 	public static void main(String[] args) {
-		DaoUsuario daoUsuario = new DaoUsuarioJpa(Usuario.class);
+		DaoUsuario daoUsuario = new DaoUsuarioJpa();
 		
 		daoUsuario.insertar(Usuario.builder().nombre("Javier").email("javier@email.net").password("javier").build());
 		daoUsuario.insertar(Usuario.builder().nombre("Pepe").email("pepe@email.net").password("pepe").build());

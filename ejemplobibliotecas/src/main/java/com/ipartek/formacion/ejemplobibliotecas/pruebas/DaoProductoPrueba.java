@@ -8,7 +8,7 @@ import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 
 public class DaoProductoPrueba {
 	public static void main(String[] args) {
-		DaoProducto dao = new DaoProductoJpa(Producto.class);
+		DaoProducto dao = new DaoProductoJpa();
 
 		dao.insertar(Producto.builder().nombre("Producto1").precio(new BigDecimal("1234")).build());
 		dao.insertar(Producto.builder().nombre("Producto2").precio(new BigDecimal("2234")).build());

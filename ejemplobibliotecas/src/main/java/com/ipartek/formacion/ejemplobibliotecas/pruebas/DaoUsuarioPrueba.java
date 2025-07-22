@@ -6,7 +6,7 @@ import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
 
 public class DaoUsuarioPrueba {
 	public static void main(String[] args) {
-		DaoUsuario dao = new DaoUsuarioJpa(Usuario.class);
+		DaoUsuario dao = new DaoUsuarioJpa();
 
 		dao.insertar(Usuario.builder().nombre("Usuario1").email("a@b.c").password("asdf").build());
 		dao.insertar(Usuario.builder().nombre("Usuario2").email("b@b.c").password("2asdf").build());

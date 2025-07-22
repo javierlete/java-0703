@@ -12,8 +12,8 @@ import lombok.extern.java.Log;
 
 @Log
 public class AnonimoNegocioImpl implements AnonimoNegocio {
-	protected static final DaoProducto DAO_PRODUCTO = (DaoProducto) Fabrica.obtener("dao.producto", Producto.class);
-	protected static final DaoUsuario DAO_USUARIO = (DaoUsuario) Fabrica.obtener("dao.usuario", Usuario.class);
+	protected static final DaoProducto DAO_PRODUCTO = (DaoProducto) Fabrica.obtener("dao.producto");
+	protected static final DaoUsuario DAO_USUARIO = (DaoUsuario) Fabrica.obtener("dao.usuario");
 
 	@Override
 	public Iterable<Producto> obtenerListadoProductos() {

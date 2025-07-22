@@ -7,8 +7,8 @@ import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
 
 public class DaoUsuarioJpa extends DaoJpa<Usuario> implements DaoUsuario {
 
-	public DaoUsuarioJpa(Class<Usuario> tipo) {
-		super(tipo);
+	public DaoUsuarioJpa() {
+		super(Usuario.class);
 	}
 
 	@Override
