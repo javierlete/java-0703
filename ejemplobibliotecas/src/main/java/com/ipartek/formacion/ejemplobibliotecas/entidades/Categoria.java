@@ -1,16 +1,12 @@
 package com.ipartek.formacion.ejemplobibliotecas.entidades;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.PositiveOrZero;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,21 +19,17 @@ import lombok.NoArgsConstructor;
 @Builder
 
 @Entity
-@Table(name = "productos")
-public class Producto {
+@Table(name = "categorias")
+public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@NotBlank
-	@Size(max = 50)
+	@Size(max = 10)
 	private String nombre;
-
-	@NotNull
-	@PositiveOrZero
-	private BigDecimal precio;
 	
-	@NotNull
-	@ManyToOne
-	private Categoria categoria;
+	@Lob
+	@Size(max = 2000)
+	private String descripcion;
 }
