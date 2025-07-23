@@ -4,12 +4,16 @@ import com.ipartek.formacion.bibliotecas.Fabrica;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AdminNegocio;
 
+import jakarta.ws.rs.BadRequestException;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.NotFoundException;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.Response.Status;
 
 @Path("/productos")
 public class ProductoRest {
@@ -23,17 +27,21 @@ public class ProductoRest {
 	@GET
 	@Path("{id}")
 	public Producto get(@PathParam("id") Long id) {
-		return NEGOCIO.obtenerDetalleProducto(id).orElse(null);
+		return NEGOCIO.obtenerDetalleProducto(id).orElseThrow(() -> new NotFoundException());
 	}
 	
 	@POST
-	public Producto post(Producto producto) {
-		return NEGOCIO.insertarProducto(producto);
+	public Response post(Producto producto) {
+		return Response.status(Status.CREATED).entity(NEGOCIO.insertarProducto(producto)).build();
 	}
 	
 	@PUT
 	@Path("{id}")
 	public Producto put(@PathParam("id") Long id, Producto producto) {
+		if(id != producto.getId()) {
+			throw new BadRequestException();
+		}
+		
 		return NEGOCIO.modificarProducto(producto);
 	}
 	
