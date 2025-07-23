@@ -1,5 +1,7 @@
 package com.ipartek.formacion.ejemplobibliotecas.rest;
 
+import java.util.Optional;
+
 import com.ipartek.formacion.bibliotecas.Fabrica;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AdminNegocio;
@@ -27,7 +29,12 @@ public class ProductoRest {
 	@GET
 	@Path("{id}")
 	public Producto get(@PathParam("id") Long id) {
-		return NEGOCIO.obtenerDetalleProducto(id).orElseThrow(() -> new NotFoundException());
+		Optional<Producto> producto = NEGOCIO.obtenerDetalleProducto(id);
+		
+		System.out.println(producto.get());
+		System.out.println(producto.get().getCategoria().getProductos());
+		
+		return producto.orElseThrow(() -> new NotFoundException());
 	}
 	
 	@POST
