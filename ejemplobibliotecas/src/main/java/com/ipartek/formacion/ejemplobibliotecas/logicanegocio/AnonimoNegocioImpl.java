@@ -6,6 +6,7 @@ import com.ipartek.formacion.bibliotecas.Fabrica;
 import com.ipartek.formacion.ejemplobibliotecas.accesodatos.DaoCategoria;
 import com.ipartek.formacion.ejemplobibliotecas.accesodatos.DaoProducto;
 import com.ipartek.formacion.ejemplobibliotecas.accesodatos.DaoUsuario;
+import com.ipartek.formacion.ejemplobibliotecas.dtos.ProductoDTO;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Categoria;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
@@ -29,7 +30,7 @@ public class AnonimoNegocioImpl implements AnonimoNegocio {
 	}
 
 	@Override
-	public Iterable<Producto> buscarProductosPorCategoria(Long idCategoria) {
+	public Iterable<ProductoDTO> buscarProductosPorCategoria(Long idCategoria) {
 		return DAO_PRODUCTO.buscarPorCategoria(idCategoria);
 	}
 

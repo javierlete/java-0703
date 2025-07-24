@@ -3,8 +3,8 @@ package com.ipartek.formacion.ejemplobibliotecas.rest;
 import java.util.Optional;
 
 import com.ipartek.formacion.bibliotecas.Fabrica;
+import com.ipartek.formacion.ejemplobibliotecas.dtos.ProductoDTO;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Categoria;
-import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AdminNegocio;
 
 import jakarta.ws.rs.BadRequestException;
@@ -37,8 +37,7 @@ public class CategoriaRest {
 
 	@GET
 	@Path("{id}/productos")
-	public Iterable<Producto> getProductos(@PathParam("id") Long id) {
-		// TODO: Solucionar petición extra de datos de categoría por id para cada producto (una select extra)
+	public Iterable<ProductoDTO> getProductos(@PathParam("id") Long id) {
 		return NEGOCIO.buscarProductosPorCategoria(id);
 	}
 	
