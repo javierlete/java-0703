@@ -3,12 +3,9 @@ package com.ipartek.formacion.ejemplobibliotecas.controladores;
 import java.util.Map;
 import java.util.Optional;
 
-import com.ipartek.formacion.bibliotecas.Controlador;
-import com.ipartek.formacion.bibliotecas.Fabrica;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
-import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AnonimoNegocio;
 
-public class LoginControlador implements Controlador {
+public class LoginControlador implements ControladorEjemploBibliotecas {
 
 	@Override
 	public String ejecutar(String metodo, Map<String, String[]> mapaEntrada, Map<String, Object> mapaSalida,
@@ -23,9 +20,7 @@ public class LoginControlador implements Controlador {
 
 		Usuario usuario = Usuario.builder().email(email).password(password).build();
 
-		AnonimoNegocio negocio = (AnonimoNegocio) Fabrica.obtener("negocio.anonimo");
-
-		Optional<Usuario> usuarioAutenticado = negocio.autenticar(usuario);
+		Optional<Usuario> usuarioAutenticado = ANONIMO_NEGOCIO.autenticar(usuario);
 
 		if (usuarioAutenticado.isEmpty()) {
 			return "redirect:/login";

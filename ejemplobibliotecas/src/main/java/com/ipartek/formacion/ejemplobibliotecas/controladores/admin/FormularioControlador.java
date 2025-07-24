@@ -4,25 +4,21 @@ import java.math.BigDecimal;
 import java.util.Map;
 import java.util.Optional;
 
-import com.ipartek.formacion.bibliotecas.Controlador;
 import com.ipartek.formacion.bibliotecas.Errores;
-import com.ipartek.formacion.bibliotecas.Fabrica;
+import com.ipartek.formacion.ejemplobibliotecas.controladores.ControladorEjemploBibliotecas;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
-import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.AdminNegocio;
 import com.ipartek.formacion.ejemplobibliotecas.logicanegocio.LogicaNegocioException;
 
-public class FormularioControlador implements Controlador {
+public class FormularioControlador implements ControladorEjemploBibliotecas {
 
 	@Override
 	public String ejecutar(String metodo, Map<String, String[]> mapaEntrada, Map<String, Object> mapaSalida) {
-		AdminNegocio negocio = (AdminNegocio) Fabrica.obtener("negocio.admin");
-
 		String[] sId = mapaEntrada.get("id");
 		Long id = sId == null || sId[0].isBlank() ? null : Long.parseLong(sId[0]);
 
 		if ("GET".equals(metodo)) {
 			if (id != null) {
-				Optional<Producto> producto = negocio.obtenerDetalleProducto(id);
+				Optional<Producto> producto = ADMIN_NEGOCIO.obtenerDetalleProducto(id);
 
 				if (producto.isPresent()) {
 					mapaSalida.put("producto", producto.get());
@@ -41,9 +37,9 @@ public class FormularioControlador implements Controlador {
 
 		try {
 			if (producto.getId() == null) {
-				negocio.insertarProducto(producto);
+				ADMIN_NEGOCIO.insertarProducto(producto);
 			} else {
-				negocio.modificarProducto(producto);
+				ADMIN_NEGOCIO.modificarProducto(producto);
 			}
 		} catch (LogicaNegocioException e) {
 			mapaSalida.put("errores", Errores.contraintViolationsAMapa(e.getErrores()));
