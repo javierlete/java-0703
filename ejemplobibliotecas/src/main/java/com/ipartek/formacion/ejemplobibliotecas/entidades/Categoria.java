@@ -2,6 +2,7 @@ package com.ipartek.formacion.ejemplobibliotecas.entidades;
 
 import java.util.List;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -39,6 +40,7 @@ public class Categoria {
 	@Size(max = 2000)
 	private String descripcion;
 	
+	@JsonbTransient
 	@ToString.Exclude
 	@EqualsAndHashCode.Exclude
 	@OneToMany(mappedBy = "categoria", fetch = FetchType.EAGER) // TODO Corregir esta mala práctica. Es mejor usar LAZY
