@@ -31,9 +31,6 @@ public class ProductoRest {
 	public Producto get(@PathParam("id") Long id) {
 		Optional<Producto> producto = NEGOCIO.obtenerDetalleProducto(id);
 		
-		System.out.println(producto.get());
-		System.out.println(producto.get().getCategoria().getProductos());
-		
 		return producto.orElseThrow(() -> new NotFoundException());
 	}
 	

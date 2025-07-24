@@ -38,6 +38,7 @@ public class CategoriaRest {
 	@GET
 	@Path("{id}/productos")
 	public Iterable<Producto> getProductos(@PathParam("id") Long id) {
+		// TODO: Solucionar petición extra de datos de categoría por id para cada producto (una select extra)
 		return NEGOCIO.buscarProductosPorCategoria(id);
 	}
 	
