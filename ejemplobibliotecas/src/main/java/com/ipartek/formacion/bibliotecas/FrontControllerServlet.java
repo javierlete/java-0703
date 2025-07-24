@@ -43,8 +43,28 @@ public class FrontControllerServlet extends HttpServlet {
 		Map<String, Object> mapaSalida = new HashMap<>();
 		Map<String, Object> sesionSalida = new HashMap<>();
 
-		String ruta = controlador.ejecutar(metodo, mapaEntrada, mapaSalida, sesionEntrada, sesionSalida);
+		String ruta;
 
+		String rutaPre = controlador.preEjecutar(metodo, mapaEntrada, mapaSalida, sesionEntrada, sesionSalida);
+
+		if (rutaPre != null) {
+			ruta = rutaPre;
+			irALaSiguienteVista(request, response, session, mapaSalida, sesionSalida, ruta);
+			return;
+		}
+
+		String rutaEjecutar = controlador.ejecutar(metodo, mapaEntrada, mapaSalida, sesionEntrada, sesionSalida);
+
+		if (rutaEjecutar != null) {
+			ruta = rutaEjecutar;
+			irALaSiguienteVista(request, response, session, mapaSalida, sesionSalida, ruta);
+			return;
+		}
+	}
+
+	private void irALaSiguienteVista(HttpServletRequest request, HttpServletResponse response, HttpSession session,
+			Map<String, Object> mapaSalida, Map<String, Object> sesionSalida, String ruta)
+			throws IOException, ServletException {
 		log.info("RUTA: " + ruta);
 
 		exportarSesionSalida(session, sesionSalida);
@@ -57,10 +77,10 @@ public class FrontControllerServlet extends HttpServlet {
 	private Map<String, Object> obtenerSesionEntrada(HttpSession session) {
 		Map<String, Object> sesionEntrada = new HashMap<>();
 		Enumeration<String> e = session.getAttributeNames();
-	
+
 		while (e.hasMoreElements()) {
 			String clave = e.nextElement();
-	
+
 			sesionEntrada.put(clave, session.getAttribute(clave));
 		}
 		return sesionEntrada;

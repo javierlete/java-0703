@@ -24,7 +24,9 @@ public interface Controlador {
 	default String ejecutar() {
 		throw new RuntimeException("NO IMPLEMENTADO");
 	}
-	
-	
 
+	default String preEjecutar(String metodo, Map<String, String[]> mapaEntrada, Map<String, Object> mapaSalida,
+			Map<String, Object> sesionEntrada, Map<String, Object> sesionSalida) {
+		return null;
+	}
 }
