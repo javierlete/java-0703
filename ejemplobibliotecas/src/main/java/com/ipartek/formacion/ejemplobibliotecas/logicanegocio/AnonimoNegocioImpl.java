@@ -3,8 +3,10 @@ package com.ipartek.formacion.ejemplobibliotecas.logicanegocio;
 import java.util.Optional;
 
 import com.ipartek.formacion.bibliotecas.Fabrica;
+import com.ipartek.formacion.ejemplobibliotecas.accesodatos.DaoCategoria;
 import com.ipartek.formacion.ejemplobibliotecas.accesodatos.DaoProducto;
 import com.ipartek.formacion.ejemplobibliotecas.accesodatos.DaoUsuario;
+import com.ipartek.formacion.ejemplobibliotecas.entidades.Categoria;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Producto;
 import com.ipartek.formacion.ejemplobibliotecas.entidades.Usuario;
 
@@ -12,6 +14,7 @@ import lombok.extern.java.Log;
 
 @Log
 public class AnonimoNegocioImpl implements AnonimoNegocio {
+	protected static final DaoCategoria DAO_CATEGORIA = (DaoCategoria) Fabrica.obtener("dao.categoria");
 	protected static final DaoProducto DAO_PRODUCTO = (DaoProducto) Fabrica.obtener("dao.producto");
 	protected static final DaoUsuario DAO_USUARIO = (DaoUsuario) Fabrica.obtener("dao.usuario");
 
@@ -23,6 +26,11 @@ public class AnonimoNegocioImpl implements AnonimoNegocio {
 	@Override
 	public Optional<Producto> obtenerDetalleProducto(Long id) {
 		return DAO_PRODUCTO.obtenerPorId(id);
+	}
+
+	@Override
+	public Iterable<Producto> buscarProductosPorCategoria(Long idCategoria) {
+		return DAO_PRODUCTO.buscarPorCategoria(idCategoria);
 	}
 
 	@Override
@@ -46,6 +54,16 @@ public class AnonimoNegocioImpl implements AnonimoNegocio {
 		}
 
 		return Optional.empty();
+	}
+
+	@Override
+	public Iterable<Categoria> obtenerListadoCategorias() {
+		return DAO_CATEGORIA.obtenerTodos();
+	}
+
+	@Override
+	public Optional<Categoria> obtenerDetalleCategoria(Long id) {
+		return DAO_CATEGORIA.obtenerPorId(id);
 	}
 
 }
