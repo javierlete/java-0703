@@ -2,6 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/vistas/includes/cabecera.jsp"%>
 
+<c:if test="${categoria != null}">
+	<h1>${categoria.nombre}</h1>
+</c:if>
+
 <div class="row row-cols-1 row-cols-md-3 g-4">
 	<c:forEach items="${productos}" var="producto">
 		<jl:tarjeta imagen="https://picsum.photos/400/300?${producto.id}"

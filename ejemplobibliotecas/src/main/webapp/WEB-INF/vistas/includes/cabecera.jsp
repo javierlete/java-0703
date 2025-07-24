@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
 <%@ taglib uri="jakarta.tags.fmt" prefix="fmt"%>
-<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
-<%@ taglib tagdir="/WEB-INF/tags" prefix="jl" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn"%>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="jl"%>
 <fmt:setLocale value="es-ES" />
 <!DOCTYPE html>
 <html lang="es" class="h-100">
@@ -25,7 +25,7 @@
 
 	<nav class="navbar navbar-expand-sm bg-dark" data-bs-theme="dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Ejemplo Bibliotecas</a>
+			<a class="navbar-brand" href="fc/">Ejemplo Bibliotecas</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -35,6 +35,14 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-sm-0">
 					<li class="nav-item"><a class="nav-link" href="fc/">Listado</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" role="button"
+						data-bs-toggle="dropdown" aria-expanded="false">Categorías</a>
+						<ul class="dropdown-menu">
+							<c:forEach items="${categorias}" var="c">
+								<li><a class="dropdown-item" href="fc/categoria?id=${c.id}">${c.nombre}</a></li>
+							</c:forEach>
+						</ul></li>
 				</ul>
 
 				<ul class="navbar-nav mb-2 mb-sm-0">
