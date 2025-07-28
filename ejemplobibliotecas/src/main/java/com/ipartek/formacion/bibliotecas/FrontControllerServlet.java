@@ -45,7 +45,7 @@ public class FrontControllerServlet extends HttpServlet {
 
 		String ruta;
 
-		String rutaPre = controlador.preEjecutar(metodo, mapaEntrada, mapaSalida, sesionEntrada, sesionSalida);
+		String rutaPre = controlador.preEjecutar(url, metodo, mapaEntrada, mapaSalida, sesionEntrada, sesionSalida);
 
 		if (rutaPre != null) {
 			ruta = rutaPre;
