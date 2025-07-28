@@ -26,7 +26,7 @@ public class Categoria {
 	private Long id;
 	
 	@NotBlank
-	@Size(max = 10)
+	@Size(max = 20)
 	private String nombre;
 	
 	@Lob
