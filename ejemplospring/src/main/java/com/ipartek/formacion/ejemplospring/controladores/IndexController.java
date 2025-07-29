@@ -23,4 +23,9 @@ public class IndexController {
 		modelo.addAttribute("producto", anonimoService.obtenerDetalleProducto(id).orElse(null));
 		return "detalle";
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 }

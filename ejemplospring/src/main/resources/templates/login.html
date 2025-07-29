@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>Inicio de sesión</title>
+<main>
+
+	<form action="login.html" th:action="@{/login}"
+		method="post">
+		<div>
+			<input placeholder="Email" name="username">
+		</div>
+		<div>
+			<input placeholder="Contraseña" name="password">
+		</div>
+		<div>
+			<button>Iniciar sesión</button>
+		</div>
+
+	</form>
+
+</main>

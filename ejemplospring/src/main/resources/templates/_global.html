@@ -17,8 +17,11 @@
 				href="admin/listado.html" th:href="@{/admin/listado}">Administración</a></li>
 			<li sec:authorize="!isAuthenticated()"><a href="login.html"
 				th:href="@{/login}">Inicio sesión</a></li>
-			<li sec:authorize="isAuthenticated()"><a href="logout.html"
-				th:href="@{/logout}">Cerrar sesión</a></li>
+			<li sec:authorize="isAuthenticated()">
+				<form action="index.html" th:action="@{/logout}" method="post">
+					<button>Cerrar sesión</button>
+				</form>
+			</li>
 			<li sec:authorize="isAuthenticated()" sec:authentication="name">Usuario</li>
 			<li sec:authorize="isAuthenticated()"
 				sec:authentication="principal.authorities">[ROLE_USER,
