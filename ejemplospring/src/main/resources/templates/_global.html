@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" th:fragment="plantilla (titulo, contenido)"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title th:replace="${titulo}">Ejemplo Spring</title>
+</head>
+<body>
+	<header>
+		<h1>Ejemplo Spring</h1>
+	</header>
+	<nav>
+		<ul>
+			<li><a href="index.html" th:href="@{/}">Principal</a></li>
+			<li><a href="admin/listado.html" th:href="@{/admin/listado}">Administración</a></li>
+		</ul>
+	</nav>
+
+	<div th:replace="${contenido}">
+		<p>CONTENIDO</p>
+	</div>
+
+	<footer> &copy;2025 Javier Lete </footer>
+
+</body>
+</html>

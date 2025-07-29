@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Ejemplo Spring</title>
-</head>
-<body>
-
-	<h1>Ejemplo Spring</h1>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>Listado de administración</title>
+<main>
 
 	<table>
 		<thead>
@@ -37,6 +34,4 @@
 			</tr>
 		</tfoot>
 	</table>
-
-</body>
-</html>
+</main>

@@ -1,21 +1,15 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Ejemplo Spring</title>
-</head>
-<body>
-
-<h1>Ejemplo Spring</h1>
-
-<dl>
-	<dt>Id</dt>
-	<dd th:text="${producto.id}">1</dd>
-	<dt>Nombre</dt>
-	<dd th:text="${producto.nombre}">Portátil</dd>
-	<dt>Precio</dt>
-	<dd th:text="${producto.precio}">1234</dd>
-</dl>
-
-</body>
-</html>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>Detalle de producto</title>
+<main>
+	<dl>
+		<dt>Id</dt>
+		<dd th:text="${producto.id}">1</dd>
+		<dt>Nombre</dt>
+		<dd th:text="${producto.nombre}">Portátil</dd>
+		<dt>Precio</dt>
+		<dd th:text="${producto.precio}">1234</dd>
+	</dl>
+</main>

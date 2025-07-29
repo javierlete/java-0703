@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>Ejemplo Spring</title>
-</head>
-<body>
-
-	<h1>Ejemplo Spring</h1>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>Formulario de producto</title>
+<main>
 
 	<form action="listado.html" th:action="@{/admin/formulario}"
 		method="post" th:object="${producto}">
@@ -14,12 +11,14 @@
 			<input th:field="*{id}">
 		</div>
 		<div>
-			<input placeholder="Nombre" th:field="*{nombre}">
-			<span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error en el nombre</span>
+			<input placeholder="Nombre" th:field="*{nombre}"> <span
+				th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error
+				en el nombre</span>
 		</div>
 		<div>
-			<input placeholder="Precio" th:field="*{precio}">
-			<span th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error en el precio</span>
+			<input placeholder="Precio" th:field="*{precio}"> <span
+				th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error
+				en el precio</span>
 		</div>
 		<div>
 			<select name="categoria" th:field="*{categoria}">
@@ -33,5 +32,4 @@
 
 	</form>
 
-</body>
-</html>
+</main>
