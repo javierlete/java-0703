@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" th:fragment="plantilla (titulo, contenido)"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title th:replace="${titulo}">Ejemplo Spring</title>
@@ -12,7 +13,16 @@
 	<nav>
 		<ul>
 			<li><a href="index.html" th:href="@{/}">Principal</a></li>
-			<li><a href="admin/listado.html" th:href="@{/admin/listado}">Administración</a></li>
+			<li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a
+				href="admin/listado.html" th:href="@{/admin/listado}">Administración</a></li>
+			<li sec:authorize="!isAuthenticated()"><a href="login.html"
+				th:href="@{/login}">Inicio sesión</a></li>
+			<li sec:authorize="isAuthenticated()"><a href="logout.html"
+				th:href="@{/logout}">Cerrar sesión</a></li>
+			<li sec:authorize="isAuthenticated()" sec:authentication="name">Usuario</li>
+			<li sec:authorize="isAuthenticated()"
+				sec:authentication="principal.authorities">[ROLE_USER,
+				ROLE_ADMIN]</li>
 		</ul>
 	</nav>
 
