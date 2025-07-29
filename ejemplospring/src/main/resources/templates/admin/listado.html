@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ejemplo Spring</title>
+</head>
+<body>
+
+	<h1>Ejemplo Spring</h1>
+
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nombre</th>
+				<th>Precio</th>
+				<th>Opciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="p: ${productos}">
+				<td th:text="${p.id}">Id</td>
+				<td th:text="${p.nombre}">Producto</td>
+				<td th:text="${p.precio}">precio</td>
+				<td>
+					<a href="formulario.html" th:href="@{/admin/formulario(id=${p.id})}">Editar</a>
+					<a href="#" th:href="@{/admin/borrar(id=${p.id})}">Borrar</a>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="3"></td>
+				<td>
+					<a href="formulario.html" th:href="@{/admin/formulario}">Añadir</a>
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+
+</body>
+</html>
