@@ -38,4 +38,9 @@ public class Usuario {
 	@NotBlank
 	@Size(max = 200)
 	private String password;
+
+	@NotBlank
+	@Size(max = 20)
+	@Builder.Default
+	private String rol = "USUARIO";
 }

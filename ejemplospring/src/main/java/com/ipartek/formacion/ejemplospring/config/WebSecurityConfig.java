@@ -29,7 +29,7 @@ public class WebSecurityConfig {
 	      		WHERE email=?
 	      		""")
 	      .authoritiesByUsernameQuery("""
-	      		SELECT email, 'ROLE_ADMINISTRADOR'
+	      		SELECT email, CONCAT('ROLE_', rol)
 	      		FROM usuarios
 	      		WHERE email=?
 	      		""")

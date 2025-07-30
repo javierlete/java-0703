@@ -49,7 +49,7 @@ public class ProductoRepositoryPrueba implements CommandLineRunner {
 		var javierPassword = passwordEncoder.encode("javier");
 		var pepePassword = passwordEncoder.encode("pepe");
 		
-		var javier = Usuario.builder().nombre("Javier").email("javier@email.net").password(javierPassword).build();
+		var javier = Usuario.builder().rol("ADMINISTRADOR").nombre("Javier").email("javier@email.net").password(javierPassword).build();
 		var pepe = Usuario.builder().nombre("Pepe").email("pepe@email.net").password(pepePassword).build();
 
 		usuarioRepository.save(javier);
