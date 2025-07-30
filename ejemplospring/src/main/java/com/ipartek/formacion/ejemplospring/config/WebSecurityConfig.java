@@ -18,9 +18,6 @@ public class WebSecurityConfig {
 	@Autowired
 	private DataSource dataSource;
 
-//	@Autowired
-//	private PasswordEncoder passwordEncoder;
-
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth)
 	  throws Exception {
