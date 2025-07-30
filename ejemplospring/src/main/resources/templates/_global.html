@@ -1,39 +1,62 @@
 <!DOCTYPE html>
-<html lang="es" th:fragment="plantilla (titulo, contenido)"
+<html class="h-100" lang="es"
+	th:fragment="plantilla (titulo, contenido)"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title th:replace="${titulo}">Ejemplo Spring</title>
+<base th:href="@{/}">
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/bootstrap-icons.min.css" rel="stylesheet">
 </head>
-<body>
-	<header>
-		<h1>Ejemplo Spring</h1>
-	</header>
-	<nav>
-		<ul>
-			<li><a href="index.html" th:href="@{/}">Principal</a></li>
-			<li sec:authorize="hasRole('ROLE_ADMINISTRADOR')"><a
-				href="admin/listado.html" th:href="@{/admin/listado}">Administración</a></li>
-			<li sec:authorize="!isAuthenticated()"><a href="login.html"
-				th:href="@{/login}">Inicio sesión</a></li>
-			<li sec:authorize="isAuthenticated()">
-				<form action="index.html" th:action="@{/logout}" method="post">
-					<button>Cerrar sesión</button>
-				</form>
-			</li>
-			<li sec:authorize="isAuthenticated()" sec:authentication="name">Usuario</li>
-			<li sec:authorize="isAuthenticated()"
-				sec:authentication="principal.authorities">[ROLE_USER,
-				ROLE_ADMIN]</li>
-		</ul>
+<body class="h-100 d-flex flex-column">
+	<nav class="navbar navbar-expand-md bg-dark" data-bs-theme="dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Ejemplo Spring</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-md-0">
+					<li class="nav-item"><a class="nav-link" href="index.html"
+						th:href="@{/}">Principal</a></li>
+				</ul>
+				<ul class="navbar-nav mb-2 mb-md-0">
+					<li class="nav-item" sec:authorize="hasRole('ROLE_ADMINISTRADOR')">
+						<a class="nav-link" href="admin/listado.html"
+						th:href="@{/admin/listado}">Administración</a>
+					</li>
+					<li class="nav-item" sec:authorize="!isAuthenticated()"><a
+						class="nav-link" href="login.html" th:href="@{/login}">Inicio
+							sesión</a></li>
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<form action="index.html" th:action="@{/logout}" method="post">
+							<button class="nav-link">Cerrar sesión</button>
+						</form>
+					</li>
+					<li class="navbar-text" sec:authorize="isAuthenticated()"
+						sec:authentication="name">Usuario</li>
+					<li class="navbar-text" sec:authorize="isAuthenticated()"
+						sec:authentication="principal.authorities">Roles</li>
+				</ul>
+			</div>
+		</div>
 	</nav>
 
-	<div th:replace="${contenido}">
-		<p>CONTENIDO</p>
+	<div class="flex-grow-1 container my-5">
+		<div th:replace="${contenido}">
+			<p>CONTENIDO</p>
+		</div>
 	</div>
 
-	<footer> &copy;2025 Javier Lete </footer>
+	<footer class="text-bg-dark p-2 text-center"> &copy;2025
+		Javier Lete </footer>
 
+	<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

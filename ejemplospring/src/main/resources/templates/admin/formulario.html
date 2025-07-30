@@ -7,27 +7,41 @@
 
 	<form action="listado.html" th:action="@{/admin/formulario}"
 		method="post" th:object="${producto}">
-		<div>
-			<input th:field="*{id}">
+
+		<input type="hidden" th:field="*{id}">
+
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="nombre">Nombre</label>
+			<div class="col-sm">
+				<input class="form-control"
+					th:classappend="${#fields.hasErrors('nombre') ? 'is-invalid': ''}"
+					placeholder="Nombre" th:field="*{nombre}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('nombre')}"
+					th:errors="*{nombre}">Error en el nombre</div>
+			</div>
 		</div>
-		<div>
-			<input placeholder="Nombre" th:field="*{nombre}"> <span
-				th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error
-				en el nombre</span>
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="precio">Precio</label>
+			<div class="col-sm">
+				<input class="form-control" th:classappend="${#fields.hasErrors('precio') ? 'is-invalid': ''}" placeholder="Precio"
+					th:field="*{precio}">
+				<div class="invalid-feedback" th:if="${#fields.hasErrors('precio')}"
+					th:errors="*{precio}">Error en el precio</div>
+			</div>
 		</div>
-		<div>
-			<input placeholder="Precio" th:field="*{precio}"> <span
-				th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}">Error
-				en el precio</span>
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="categoria">Categoría</label>
+			<div class="col-sm">
+				<select class="form-select" name="categoria" th:field="*{categoria}">
+					<option th:each="c: ${categorias}" th:value="${c.id}"
+						th:text="${c.nombre}">Categoría 1</option>
+				</select>
+			</div>
 		</div>
-		<div>
-			<select name="categoria" th:field="*{categoria}">
-				<option th:each="c: ${categorias}" th:value="${c.id}"
-					th:text="${c.nombre}">Categoría 1</option>
-			</select>
-		</div>
-		<div>
-			<button>Guardar</button>
+		<div class="row mb-2">
+			<div class="offset-sm-2 col-sm">
+				<button class=" btn btn-primary">Guardar</button>
+			</div>
 		</div>
 
 	</form>

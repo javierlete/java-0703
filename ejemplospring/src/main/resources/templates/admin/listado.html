@@ -5,31 +5,39 @@
 <title>Listado de administración</title>
 <main>
 
-	<table>
-		<thead>
+	<table class="table table-hover table-striped table-bordered">
+		<thead class="table-secondary">
 			<tr>
-				<th>Id</th>
+				<th class="text-end">Id</th>
 				<th>Nombre</th>
-				<th>Precio</th>
-				<th>Opciones</th>
+				<th class="text-end">Precio</th>
+				<th>Categoría</th>
+				<th class="text-center">Opciones</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="p: ${productos}">
-				<td th:text="${p.id}">Id</td>
+				<th class="text-end" th:text="${p.id}">Id</th>
 				<td th:text="${p.nombre}">Producto</td>
-				<td th:text="${p.precio}">precio</td>
-				<td>
-					<a href="formulario.html" th:href="@{/admin/formulario(id=${p.id})}">Editar</a>
-					<a href="#" th:href="@{/admin/borrar(id=${p.id})}">Borrar</a>
+				<td class="text-end" th:text="${p.precio}">Precio</td>
+				<td th:text="${p.categoria.nombre}">Categoría</td>
+				<td class="text-center">
+					<a class="btn btn-primary btn-sm" href="formulario.html" th:href="@{/admin/formulario(id=${p.id})}">
+						<i class="bi bi-pencil-fill"></i>
+					</a>
+					<a class="btn btn-danger btn-sm" href="#" th:href="@{/admin/borrar(id=${p.id})}">
+						<i class="bi bi-trash-fill"></i>
+					</a>
 				</td>
 			</tr>
 		</tbody>
-		<tfoot>
+		<tfoot class="table-secondary">
 			<tr>
-				<td colspan="3"></td>
-				<td>
-					<a href="formulario.html" th:href="@{/admin/formulario}">Añadir</a>
+				<td colspan="4"></td>
+				<td class="text-center">
+					<a class="btn btn-primary btn-sm" href="formulario.html" th:href="@{/admin/formulario}">
+						<i class="bi bi-plus-lg"></i>
+					</a>
 				</td>
 			</tr>
 		</tfoot>

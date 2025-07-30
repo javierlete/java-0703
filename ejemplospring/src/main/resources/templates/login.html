@@ -5,18 +5,24 @@
 <title>Inicio de sesión</title>
 <main>
 
-	<form action="login.html" th:action="@{/login}"
-		method="post">
-		<div>
-			<input placeholder="Email" name="username">
+	<form action="login.html" th:action="@{/login}" method="post">
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="email">Email</label>
+			<div class="col-sm">
+				<input class="form-control" placeholder="Email" name="username">
+			</div>
 		</div>
-		<div>
-			<input placeholder="Contraseña" name="password">
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="password">Contraseña</label>
+			<div class="col-sm">
+				<input class="form-control" placeholder="Contraseña" name="password">
+			</div>
 		</div>
-		<div>
-			<button>Iniciar sesión</button>
+		<div class="row mb-2">
+			<div class="offset-sm-2 col-sm">
+				<button class="btn btn-primary">Iniciar sesión</button>
+			</div>
 		</div>
-
 	</form>
 
 </main>
