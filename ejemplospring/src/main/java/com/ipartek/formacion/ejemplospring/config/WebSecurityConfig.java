@@ -1,13 +1,13 @@
 package com.ipartek.formacion.ejemplospring.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,25 +15,27 @@ import org.springframework.security.web.SecurityFilterChain;
 public class WebSecurityConfig {
 
 	// AUTENTICACIÓN
-	@Bean
-	UserDetailsService userDetailsService() {
-		UserDetails javier =
-			 User.withDefaultPasswordEncoder()
-				.username("javier@email.net")
-				.password("javier")
-				.roles("ADMINISTRADOR")
-				.build();
-		
-		UserDetails pepe =
-				User.withDefaultPasswordEncoder()
-				.username("pepe@email.net")
-				.password("pepe")
-				.roles("USUARIO")
-				.build();
+	@Autowired
+	private DataSource dataSource;
 
-		return new InMemoryUserDetailsManager(javier, pepe);
+//	@Autowired
+//	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	public void configureGlobal(AuthenticationManagerBuilder auth)
+	  throws Exception {
+	    auth.jdbcAuthentication()
+	      .dataSource(dataSource)
+//	      .withDefaultSchema()
+//	      .withUser(User.withUsername("javier@email.net")
+//	        .password(passwordEncoder.encode("javier"))
+//	        .roles("ADMINISTRADOR"))
+//	      .withUser(User.withUsername("pepe@email.net")
+//    		.password(passwordEncoder.encode("pepe"))
+//    		.roles("USUARIO"))
+	      ;
 	}
-
+	
 	// AUTORIZACIÓN
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
