@@ -26,13 +26,16 @@ public class WebSecurityConfig {
 	  throws Exception {
 	    auth.jdbcAuthentication()
 	      .dataSource(dataSource)
-//	      .withDefaultSchema()
-//	      .withUser(User.withUsername("javier@email.net")
-//	        .password(passwordEncoder.encode("javier"))
-//	        .roles("ADMINISTRADOR"))
-//	      .withUser(User.withUsername("pepe@email.net")
-//    		.password(passwordEncoder.encode("pepe"))
-//    		.roles("USUARIO"))
+	      .usersByUsernameQuery("""
+	      		SELECT email, password, 1 
+	      		FROM usuarios
+	      		WHERE email=?
+	      		""")
+	      .authoritiesByUsernameQuery("""
+	      		SELECT email, 'ROLE_ADMINISTRADOR'
+	      		FROM usuarios
+	      		WHERE email=?
+	      		""")
 	      ;
 	}
 	
