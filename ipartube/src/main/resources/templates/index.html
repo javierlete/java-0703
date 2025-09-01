@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>IparTube</title>
+<main>
+	<dl class="list-group" th:each="video: ${videos}" th:object="${video}">
+		<dt class="list-group-item">
+			<a th:href="@{/video(id=${video.id})}" href="video.html"> <span th:text="*{titulo}">VIDEO</span></a> (<span
+				th:text="*{usuario.nombre}">USUARIO</span>)
+		</dt>
+		<dd class="list-group-item" th:text="*{descripcion}">DESCRIPCIÓN</dd>
+	</dl>
+</main>
+
+	
