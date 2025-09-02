@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title></title>
+<main>
+	<form action="index.html" th:action="@{/autenticado/alta-video}" method="post" novalidate th:object="${video}">
+		<input type="hidden" th:field="*{usuario.id}">
+	
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="titulo">Título</label>
+			<div class="col-sm">
+				<input type="text" class="form-control" th:classappend="${#fields.hasErrors('titulo') ? 'is-invalid' : ''}" th:field="*{titulo}">
+				<div class="invalid-feedback" th:errors="*{titulo}">El título es obligatorio</div>
+			</div>
+		</div>
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="url">URL</label>
+			<div class="col-sm">
+				<input type="url" class="form-control" th:classappend="${#fields.hasErrors('url') ? 'is-invalid' : ''}" th:field="*{url}">
+				<div class="invalid-feedback" th:errors="*{url}">La URL es obligatoria</div>
+			</div>
+		</div>
+		<div class="row mb-2">
+			<label class="col-sm-2 col-form-label" for="descripcion">Descripción</label>
+			<div class="col-sm">
+				<textarea class="form-control" th:classappend="${#fields.hasErrors('descripcion') ? 'is-invalid' : ''}" th:field="*{descripcion}"></textarea>
+				<div class="invalid-feedback" th:errors="*{descripcion}">La descripción no puede tener más de 2000 caracteres</div>
+			</div>
+		</div>
+		<div class="row mb-2">
+			<div class="offset-sm-2 col-sm">
+				<button class="btn btn-primary">Guardar</button>
+			</div>
+		</div>
+	</form>
+</main>

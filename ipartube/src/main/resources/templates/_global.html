@@ -31,6 +31,10 @@
 						<a class="nav-link" href="admin/listado.html"
 						th:href="@{/admin/listado}">Administración</a>
 					</li>
+					<li class="nav-item" sec:authorize="isAuthenticated()">
+						<a class="nav-link" href="admin/listado.html"
+						th:href="@{/autenticado/alta-video}">Alta Video</a>
+					</li>
 					<li class="nav-item" sec:authorize="!isAuthenticated()"><a
 						class="nav-link" href="login.html" th:href="@{/login}">Inicio
 							sesión</a></li>
