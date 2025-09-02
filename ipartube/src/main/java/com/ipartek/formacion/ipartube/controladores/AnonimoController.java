@@ -27,4 +27,9 @@ public class AnonimoController {
 		modelo.addAttribute("video", video);
 		return "video";
 	}
+	
+	@GetMapping("/login")
+	public String login() {
+		return "login";
+	}
 }

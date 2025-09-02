@@ -41,8 +41,8 @@
 					</li>
 					<li class="navbar-text" sec:authorize="isAuthenticated()"
 						sec:authentication="name">Usuario</li>
-					<li class="navbar-text" sec:authorize="isAuthenticated()"
-						sec:authentication="principal.authorities">Roles</li>
+					<!--/* <li class="navbar-text" sec:authorize="isAuthenticated()"
+						sec:authentication="principal.authorities">Roles</li> */-->
 				</ul>
 			</div>
 		</div>
@@ -58,5 +58,6 @@
 		Javier Lete </footer>
 
 	<script src="js/bootstrap.bundle.min.js"></script>
+	<script src="js/bootstrap-validation.js"></script>
 </body>
 </html>
