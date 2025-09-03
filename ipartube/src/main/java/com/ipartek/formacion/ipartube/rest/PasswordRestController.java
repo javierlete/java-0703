@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/password")
-public class PasswordController {
+public class PasswordRestController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
