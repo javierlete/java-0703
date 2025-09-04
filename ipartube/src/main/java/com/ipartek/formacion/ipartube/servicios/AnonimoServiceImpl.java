@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.ipartube.entidades.Video;
@@ -22,8 +24,14 @@ public class AnonimoServiceImpl implements AnonimoService {
 	}
 
 	@Override
+	public Page<Video> verListadoVideos(Pageable pageable) {
+		return videoRepository.findAll(pageable);
+	}
+	
+	@Override
 	public Optional<Video> verDetalleVideo(Long id) {
 		return videoRepository.findById(id);
 	}
+
 
 }
