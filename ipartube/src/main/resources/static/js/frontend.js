@@ -16,7 +16,9 @@ async function principal() {
 	iframe.style.display = 'none';
 
 	const respuesta = await fetch('/api/videos');
-	const videos = await respuesta.json();
+	const objeto = await respuesta.json();
+	
+	const videos = objeto.content;
 
 	console.log(videos);
 
