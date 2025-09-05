@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<th:block th:fragment="paginadorVideos(url, pagina, args)">
+
+		<div th:object="${pagina}">
+			<div
+				class="paginacion d-flex flex-flow justify-content-between flex-column flex-md-row align-items-md-baseline align-items-center">
+				<p class="lead">
+					Página <span th:text="*{number + 1}"></span> de <span
+						th:text="*{totalPages}"></span>
+				</p>
+
+				<nav aria-label="...">
+					<ul class="pagination">
+						<li class="page-item"><a href="#"
+							th:href="@{__${url}__(sentido=*{sort.getOrderFor('titulo').ascending ? 'DESC' : 'ASC'}__${args}__)}"
+							class="page-link d-flex align-items-center">Título <span
+								class="d-flex flex-column" style="position: relative; top: -6px">
+									<i class="bi"
+									th:classappend="*{sort.getOrderFor('titulo').ascending ? 'bi-caret-up-fill' : 'bi-caret-up'}"
+									style="height: 10px"></i> <i class="bi"
+									th:classappend="*{sort.getOrderFor('titulo').descending ? 'bi-caret-down-fill' : 'bi-caret-down'}"
+									style="height: 10px"></i>
+							</span>
+						</a></li>
+						<li class="page-item"><a href="#" class="page-link"
+							th:classappend="*{first} ? 'disabled'"
+							th:href="@{__${url}__(pagina=0__${args}__)}"><i
+								class="bi bi-chevron-bar-left"></i></a></li>
+						<li class="page-item"><a href="#" class="page-link"
+							th:classappend="*{first} ? 'disabled'"
+							th:href="@{__${url}__(pagina=*{number - 1}__${args}__)}"><i
+								class="bi bi-chevron-left"></i></a></li>
+						<li th:each="i : ${#numbers.sequence(0, pagina.totalPages - 1)}"
+							class="page-item"><a class="page-link"
+							th:classappend="${pagina.number==i} ? 'active'" href="#"
+							th:href="@{__${url}__(pagina=${i}__${args}____${args}__)}" th:text="${i+1}">1</a></li>
+						<li class="page-item"><a class="page-link"
+							th:classappend="*{last} ? 'disabled'" href="#"
+							th:href="@{__${url}__(pagina=*{number + 1}__${args}__)}"><i
+								class="bi bi-chevron-right"></i></a></li>
+						<li class="page-item"><a class="page-link"
+							th:classappend="*{last} ? 'disabled'" href="#"
+							th:href="@{__${url}__(pagina=*{totalPages - 1}__${args}__)}"><i
+								class="bi bi-chevron-bar-right"></i></a></li>
+					</ul>
+				</nav>
+
+				<p class="lead">
+					<span th:text="*{totalElements}"></span> videos
+				</p>
+			</div>
+
+			<div class="row row-cols-1 row-cols-md-3 g-4">
+				<div class="col" th:each="video: ${videos}" th:object="${video}">
+					<div class="card h-100">
+						<div class="ratio ratio-16x9 card-img-top">
+							<iframe th:src="*{url}" style="width: 100%"
+								src="https://www.youtube.com/embed/SVGjOUnQZ58?si=ZWCGhzlRXhVSLS7g"
+								title="YouTube video player"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+						</div>
+						<div class="card-body">
+							<h5 class="card-title d-flex justify-content-between">
+								<a th:href="@{/video(id=*{id})}" href="video.html"
+									th:text="*{titulo}"> Card title </a> <a href="usuario.html"
+									th:href="@{/usuario(id=*{usuario.id})}"
+									th:text="*{usuario.nombre}">Usuario</a>
+							</h5>
+							<p class="card-text" th:text="*{descripcion}">This is a wider
+								card with supporting text below as a natural lead-in to
+								additional content. This content is a little bit longer.</p>
+						</div>
+						<!-- <div class="card-footer">
+					<small class="text-body-secondary">Last updated 3 mins ago</small>
+				</div> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</th:block>
+</body>
+</html>

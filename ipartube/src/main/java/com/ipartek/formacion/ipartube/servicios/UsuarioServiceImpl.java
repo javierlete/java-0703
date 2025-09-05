@@ -22,4 +22,5 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 		return usuarioRepository.findByEmail(email);
 	}
 
+
 }

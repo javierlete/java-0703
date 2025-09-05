@@ -35,6 +35,19 @@ public class AnonimoController {
 		modelo.addAttribute("video", video);
 		return "video";
 	}
+	
+	@GetMapping("/usuario")
+	public String usuario(Long id, Model modelo, @RequestParam(defaultValue = "0") int pagina,
+			@RequestParam(defaultValue = "titulo") String ordenar,
+			@RequestParam(defaultValue = "ASC") Direction sentido) {
+		var usuario = anonimoService.verDetalleUsuario(id).orElse(null);
+		var videos = anonimoService.verListadoVideos(id, PageRequest.of(pagina, TAMANO_PAGINA, Sort.by(sentido, ordenar)));
+		
+		modelo.addAttribute("usuario", usuario);
+		modelo.addAttribute("videos", videos);
+		
+		return "usuario";
+	}
 
 	@GetMapping("/login")
 	public String login() {
