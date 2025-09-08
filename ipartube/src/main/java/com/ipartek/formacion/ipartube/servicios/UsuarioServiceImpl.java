@@ -3,6 +3,7 @@ package com.ipartek.formacion.ipartube.servicios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ipartek.formacion.ipartube.entidades.Comentario;
 import com.ipartek.formacion.ipartube.entidades.Usuario;
 import com.ipartek.formacion.ipartube.entidades.Video;
 import com.ipartek.formacion.ipartube.repositorios.UsuarioRepository;
@@ -20,6 +21,11 @@ public class UsuarioServiceImpl extends AnonimoServiceImpl implements UsuarioSer
 	@Override
 	public Usuario obtenerUsuarioPorEmail(String email) {
 		return usuarioRepository.findByEmail(email);
+	}
+
+	@Override
+	public Comentario altaComentario(Comentario comentario) {
+		return comentarioRepository.save(comentario);
 	}
 
 

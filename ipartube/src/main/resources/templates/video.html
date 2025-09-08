@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="es"
 	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <title></title>
 <main class="container">
 	<div class="d-flex justify-content-center">
 
-		<div class="col-9" th:object="${video}">
+		<!-- TODO: meter el video en una card -->
+		<div class="col col-sm-11 col-md-10 col-lg-11" th:object="${video}">
 			<div class="ratio ratio-16x9">
 				<iframe th:src="*{url}" style="width: 100%"
 					src="https://www.youtube.com/embed/SVGjOUnQZ58?si=ZWCGhzlRXhVSLS7g"
@@ -19,7 +21,37 @@
 					th:text="*{usuario.nombre}">USUARIO</span>)
 			</h2>
 			<p th:text="*{descripcion}">DESCRIPCIÓN</p>
-		</div>
 
+			<div sec:authorize="isAuthenticated()" class="my-5">
+				<div class="d-flex justify-content-between mb-2">
+					<span class="fw-bold" th:text="${usuario.nombre}">USUARIO LOGUEADO</span> <span
+						class="text-secondary"
+						th:text="${#temporals.format(#temporals.createNow(), 'dd/MM/yyyy H:mm:ss')}">2000-00-00</span>
+				</div>
+				<form th:action="@{/comentar}" method="post">
+					<input type="hidden" name="idVideo" th:value="${video.id}">
+					<textarea name="texto" class="form-control" placeholder="Comenta el video"></textarea>
+					<div class="mt-2 d-flex">
+						<button class="btn btn-primary col">Comentar</button>
+					</div>
+				</form>
+			</div>
+			<ul class="list-group">
+				<li th:each="comentario: ${comentarios}" th:object="${comentario}" class="list-group-item">
+					<div class="ms-2">
+						<div class="d-flex justify-content-between mb-2">
+							<span class="fw-bold" th:text="*{usuario.nombre}">USUARIO CUALQUIERA</span> <span
+								class="text-secondary" th:text="${#temporals.format(comentario.fechaHora, 'dd/MM/yyyy H:mm:ss')}">2000-00-00</span>
+						</div>
+						<p th:text="*{texto}">
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
 	</div>
+	
+	<p class="text-center">
+		<a href="#" th:href="@{/video(id=${video.id},numeroComentarios=${comentarios.size+1})}">Mostrar más</a>
+	</p>
 </main>
