@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-	<div th:replace="fragmentos :: paginadorVideos('/usuario', ${videos}, ',id=' + ${usuario.id})">
+	<div th:replace="_fragmentos :: paginadorVideos('/usuario', ${videos}, ',id=' + ${usuario.id})">
 	    <span>Videos</span>
 	</div>
 </main>
