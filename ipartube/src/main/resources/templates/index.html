@@ -4,7 +4,7 @@
 	xmlns:th="http://www.thymeleaf.org">
 <title>IparTube</title>
 <main>
-	<div th:replace="_fragmentos :: paginadorVideos('/', ${videos}, '')">
+	<div th:replace="_fragmentos :: paginadorVideos('/', ${videos}, '', true)">
 	    <span>Videos</span>
 	</div>
 </main>

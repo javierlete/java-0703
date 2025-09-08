@@ -5,7 +5,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<th:block th:fragment="paginadorVideos(url, pagina, args)">
+	<th:block th:fragment="paginadorVideos(url, pagina, args, conUsuario)">
 
 		<div th:object="${pagina}">
 			<div
@@ -69,7 +69,7 @@
 						<div class="card-body">
 							<h5 class="card-title d-flex justify-content-between">
 								<a th:href="@{/video(id=*{id})}" href="video.html"
-									th:text="*{titulo}"> Card title </a> <a href="usuario.html"
+									th:text="*{titulo}"> Card title </a> <a th:if="${conUsuario}" href="usuario.html"
 									th:href="@{/usuario(id=*{usuario.id})}"
 									th:text="*{usuario.nombre}">Usuario</a>
 							</h5>
