@@ -9,18 +9,30 @@
 </head>
 <body>
 
-<h1>FRONTEND</h1>
+	<h1>FRONTEND</h1>
 
-<div>
-	<a href="javascript:principal()">Principal</a>
-</div>
+	<div>
+		<a href="javascript:principal()">Principal</a>
+	</div>
 
-<ul>
-</ul>
+	<main>
+		<section id="listado">
+			<ul>
+			</ul>
+			
+			<ul id="paginacion">
+				<li><a id="primero" href="#">Primero</a></li>
+				<li><a id="anterior" href="#">Anterior</a></li>
+				<li><a id="siguiente" href="#">Siguiente</a></li>
+				<li><a id="ultimo" href="#">Último</a></li>
+			</ul>
+		</section>
 
-	<iframe
-		allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-		referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
+		<section id="detalle">
+			<iframe
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+		</section>
+	</main>
 </body>
 </html>
