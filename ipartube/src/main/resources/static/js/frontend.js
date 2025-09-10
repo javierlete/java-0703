@@ -1,6 +1,7 @@
 'use strict';
 
 let ul, iframe;
+let tituloElemento, descripcionElemento, usuarioElemento, comentariosElemento, mostrarMasComentarios;
 
 const URL = '/api/videos';
 
@@ -8,6 +9,11 @@ window.addEventListener('DOMContentLoaded', () => {
 	ul = document.querySelector('ul');
 	iframe = document.querySelector('iframe');
 
+	tituloElemento = document.getElementById('titulo');
+	descripcionElemento = document.getElementById('descripcion');
+	usuarioElemento = document.getElementById('usuario');
+	comentariosElemento = document.getElementById('comentarios');
+	mostrarMasComentarios = document.getElementById('mas-comentarios');
 
 	principal();
 });
@@ -98,9 +104,45 @@ async function detalle(id) {
 
 	console.log(video);
 
+	tituloElemento.innerText = video.titulo;
+	descripcionElemento.innerText = video.descripcion;
+	usuarioElemento.innerText = video.usuario.nombre;
+	
 	iframe.src = video.url;
 
 	mostrar('detalle');
+	
+	comentariosElemento.innerHTML = '';
+	
+	await mostrarComentarios(id);
+}
+
+async function mostrarComentarios(id, pagina = 0) {
+	const respuestaComentarios = await fetch(`${URL}/${id}/comentarios?page=${pagina}&size=1`);
+	const objeto = await respuestaComentarios.json();
+
+	const page = objeto.page;
+	const comentarios = objeto.content;
+
+	console.log(page);
+	console.log(comentarios);
+
+	comentarios.forEach(comentario => {
+		const dt = document.createElement('dt');
+		const dd = document.createElement('dd');
+
+		dt.innerText = `${comentario.usuario} (${comentario.fechaHora})`;
+		dd.innerText = comentario.texto;
+
+		comentariosElemento.appendChild(dt);
+		comentariosElemento.appendChild(dd);
+	});
+	
+	mostrarMasComentarios.onclick = e => {
+		e.preventDefault();
+		
+		mostrarComentarios(id, pagina + 1);
+	};
 }
 
 function mostrar(id) {
