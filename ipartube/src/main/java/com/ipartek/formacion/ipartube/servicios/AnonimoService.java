@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import com.ipartek.formacion.ipartube.dtos.ComentarioDto;
 import com.ipartek.formacion.ipartube.entidades.Comentario;
 import com.ipartek.formacion.ipartube.entidades.Usuario;
 import com.ipartek.formacion.ipartube.entidades.Video;
@@ -16,4 +17,5 @@ public interface AnonimoService {
 	Optional<Video> verDetalleVideo(Long id);
 	Optional<Usuario> verDetalleUsuario(Long id);
 	Page<Comentario> verComentariosVideo(Long id, Pageable pageable);
+	Page<ComentarioDto> comentariosResumidos(Long id, Pageable pageable);
 }

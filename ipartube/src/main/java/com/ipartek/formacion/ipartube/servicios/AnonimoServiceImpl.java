@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ipartek.formacion.ipartube.dtos.ComentarioDto;
 import com.ipartek.formacion.ipartube.entidades.Comentario;
 import com.ipartek.formacion.ipartube.entidades.Usuario;
 import com.ipartek.formacion.ipartube.entidades.Video;
@@ -56,6 +57,11 @@ public class AnonimoServiceImpl implements AnonimoService {
 	@Override
 	public Page<Comentario> verComentariosVideo(Long id, Pageable pageable) {
 		return comentarioRepository.findByVideoId(id, pageable);
+	}
+
+	@Override
+	public Page<ComentarioDto> comentariosResumidos(Long id, Pageable pageable) {
+		return comentarioRepository.comentariosResumidos(id, pageable);
 	}
 
 
