@@ -31,10 +31,9 @@
 						<a class="nav-link" href="admin/listado.html"
 						th:href="@{/admin/listado}">Administración</a>
 					</li>
-					<li class="nav-item" sec:authorize="isAuthenticated()">
-						<a class="nav-link" href="admin/listado.html"
-						th:href="@{/autenticado/alta-video}">Alta Video</a>
-					</li>
+					<li class="nav-item" sec:authorize="isAuthenticated()"><a
+						class="nav-link" href="admin/listado.html"
+						th:href="@{/autenticado/alta-video}">Alta Video</a></li>
 					<li class="nav-item" sec:authorize="!isAuthenticated()"><a
 						class="nav-link" href="login.html" th:href="@{/login}">Inicio
 							sesión</a></li>
@@ -43,8 +42,8 @@
 							<button class="nav-link">Cerrar sesión</button>
 						</form>
 					</li>
-					<li class="navbar-text" sec:authorize="isAuthenticated()"
-						sec:authentication="name">Usuario</li>
+					<li class="nav-item" sec:authorize="isAuthenticated()"><a
+						href="admin.html" th:href="@{/autenticado}" class="nav-link" sec:authentication="name">Usuario</a></li>
 					<!--/* <li class="navbar-text" sec:authorize="isAuthenticated()"
 						sec:authentication="principal.authorities">Roles</li> */-->
 				</ul>

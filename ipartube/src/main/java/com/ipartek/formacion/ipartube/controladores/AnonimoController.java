@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ipartek.formacion.ipartube.entidades.Comentario;
@@ -18,7 +17,6 @@ import com.ipartek.formacion.ipartube.servicios.AnonimoService;
 import com.ipartek.formacion.ipartube.servicios.UsuarioService;
 
 @Controller
-@RequestMapping("/")
 public class AnonimoController {
 	private static final int TAMANO_PAGINA = 3;
 

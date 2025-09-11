@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es"
+	th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="http://www.thymeleaf.org">
+<title>IparTube</title>
+<main>
+	<h2 th:text="${usuario.nombre}">USUARIO</h2>
+
+	<div class="table-responsive">
+		<table class="table table-hover table-bordered table-striped">
+			<thead class="table-secondary">
+				<tr>
+					<td></td>
+					<th>Id</th>
+					<th>Título</th>
+					<th>URL</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<tr th:each="video: ${videos}" th:object="${video}">
+					<td class="d-flex">
+						<a class="btn btn-sm btn-primary" href="#" th:href="@{/autenticado/editar(id=*{id})}"><i class="bi bi-pencil-fill"></i></a>
+						<a class="btn btn-sm btn-danger" href="#" th:href="@{/autenticado/borrar(id=*{id})}"><i class="bi bi-trash-fill"></i></a>
+					</td>
+					<th th:text="*{id}">1</th>
+					<td th:text="*{titulo}">EL TÍTULO</td>
+					<td th:text="*{url}">https://blablabla</td>
+				</tr>
+			</tbody>
+			
+			<tfoot class="table-secondary">
+				<tr>
+					<td>
+						<a class="btn btn-sm btn-primary" href="../formulario-video.html" th:href="@{/autenticado/insertar}"><i class="bi bi-plus-lg"></i></a>
+					</td>
+					<td colspan="3"></td>
+				</tr>
+			</tfoot>
+		</table>
+	</div>
+</main>

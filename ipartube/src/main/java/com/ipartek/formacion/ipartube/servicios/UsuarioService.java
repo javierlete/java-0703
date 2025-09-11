@@ -11,4 +11,8 @@ public interface UsuarioService extends AnonimoService {
 	Usuario obtenerUsuarioPorEmail(String email);
 
 	Comentario altaComentario(Comentario comentario);
+
+	Video modificarVideo(Video video);
+
+	void bajaVideo(Long id);
 }

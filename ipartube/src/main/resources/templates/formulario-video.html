@@ -5,6 +5,8 @@
 <title></title>
 <main>
 	<form action="index.html" th:action="@{/autenticado/alta-video}" method="post" novalidate th:object="${video}">
+		<input type="hidden" name="volver" th:value="${volver}">
+		<input type="hidden" th:field="*{id}">
 		<input type="hidden" th:field="*{usuario.id}">
 	
 		<div class="row mb-2">
