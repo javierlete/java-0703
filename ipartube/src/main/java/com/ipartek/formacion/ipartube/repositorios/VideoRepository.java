@@ -5,10 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
+import com.ipartek.formacion.ipartube.dtos.VideoDto;
 import com.ipartek.formacion.ipartube.entidades.Video;
 
 public interface VideoRepository extends CrudRepository<Video, Long>, PagingAndSortingRepository<Video, Long> {
 
-	Page<Video> findByUsuarioId(Long idUsuario, Pageable pageable);
+	Page<VideoDto> findByUsuarioId(Long idUsuario, Pageable pageable);
 
 }
