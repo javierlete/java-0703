@@ -6,13 +6,13 @@ import com.ipartek.formacion.ipartube.entidades.Video;
 
 public interface UsuarioService extends AnonimoService {
 	
-	Video altaVideo(Video video);
-
 	Usuario obtenerUsuarioPorEmail(String email);
 
 	Comentario altaComentario(Comentario comentario);
 
-	Video modificarVideo(Video video);
+	Video altaVideo(String email, Video video);
 
-	void bajaVideo(Long id);
+	Video modificarVideo(String email, Video video);
+
+	void bajaVideo(String email, Long id);
 }

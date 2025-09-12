@@ -46,7 +46,7 @@ public class AutenticadoController {
 	}
 
 	@PostMapping("/alta-video")
-	public String altaVideoPost(@Valid Video video, BindingResult bindingResult, @RequestParam(defaultValue = "/") String volver) {
+	public String altaVideoPost(@Valid Video video, BindingResult bindingResult, @RequestParam(defaultValue = "/") String volver, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "formulario-video";
 		}
@@ -54,9 +54,9 @@ public class AutenticadoController {
 		System.out.println(video);
 		
 		if (video.getId() == null) {
-			usuarioService.altaVideo(video);
+			usuarioService.altaVideo(principal.getName(), video);
 		} else {
-			usuarioService.modificarVideo(video);
+			usuarioService.modificarVideo(principal.getName(), video);
 		}
 
 		log.info("REDIRECCION: " + volver);
@@ -86,8 +86,9 @@ public class AutenticadoController {
 	}
 
 	@GetMapping("/borrar")
-	public String borrar(Long id) {
-		usuarioService.bajaVideo(id);
+	public String borrar(Long id, Principal principal) {
+		
+		usuarioService.bajaVideo(principal.getName(), id);
 
 		return "redirect:/autenticado";
 	}
