@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Ipartex</title>
+</head>
+<body>
+
+	<h1>Ipartex</h1>
+
+	<dl>
+		<th:block th:each="mensaje: ${pagina.content}">
+			<dt>
+				<span th:text="${mensaje.usuario.nombre}">Usuario</span> (<span th:text="${mensaje.fechaHora}">Fecha</span>)
+			</dt>
+			<dd th:text="${mensaje.texto}">Mensaje</dd>
+		</th:block>
+	</dl>
+
+</body>
+</html>
