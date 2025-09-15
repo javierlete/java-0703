@@ -8,12 +8,12 @@
 
 	<h1>Ipartex</h1>
 
-	<form>
+	<form th:action="@{/mensajes}" method="post">
 		<div>
-			<textarea style="width: 100%" placeholder="Escribe tu mensaje aquí"></textarea>
+			<textarea name="texto" style="width: 100%" placeholder="Escribe tu mensaje aquí"></textarea>
 		</div>
 		<div>
-			<select name="mensaje.usuario">
+			<select name="usuario">
 				<option th:each="usuario: ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}">Usuario1</option>
 			</select>
 		</div>
