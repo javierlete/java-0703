@@ -8,10 +8,25 @@
 
 	<h1>Ipartex</h1>
 
+	<form>
+		<div>
+			<textarea style="width: 100%" placeholder="Escribe tu mensaje aquí"></textarea>
+		</div>
+		<div>
+			<select>
+				<option>Usuario1</option>
+			</select>
+		</div>
+		<div>
+			<button>Enviar mensaje</button>
+		</div>
+	</form>
+
 	<dl>
 		<th:block th:each="mensaje: ${pagina.content}">
 			<dt>
-				<span th:text="${mensaje.usuario.nombre}">Usuario</span> (<span th:text="${mensaje.fechaHora}">Fecha</span>)
+				<span th:text="${mensaje.usuario.nombre}">Usuario</span> (<span
+					th:text="${mensaje.fechaHora}">Fecha</span>)
 			</dt>
 			<dd th:text="${mensaje.texto}">Mensaje</dd>
 		</th:block>
