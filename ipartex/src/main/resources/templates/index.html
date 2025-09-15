@@ -31,6 +31,10 @@
 			<dd th:text="${mensaje.texto}">Mensaje</dd>
 		</th:block>
 	</dl>
+	
+	<div>
+		<a href="#" th:if="${pagina.size < pagina.totalElements}" th:href="@{/(numeroMensajes=${pagina.size + 2})}">Mostrar más</a>
+	</div>
 
 </body>
 </html>
