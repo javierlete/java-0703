@@ -2,6 +2,9 @@ package com.ipartek.formacion.ipartex.entidades;
 
 import java.time.LocalDateTime;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,6 +39,7 @@ public class Mensaje {
 	@NotNull
 	@PastOrPresent
 	@Builder.Default
+	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private LocalDateTime fechaHora = LocalDateTime.now();
 	
 	@NotNull
