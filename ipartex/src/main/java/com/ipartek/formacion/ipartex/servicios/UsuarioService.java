@@ -8,4 +8,5 @@ import com.ipartek.formacion.ipartex.entidades.Usuario;
 public interface UsuarioService {
 	Optional<Usuario> buscarPorEmail(String email);
 	Mensaje enviarMensaje(Mensaje mensaje);
+	Iterable<Usuario> listarUsuarios();
 }

@@ -29,4 +29,9 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return mensajeRepository.save(mensaje);
 	}
 
+	@Override
+	public Iterable<Usuario> listarUsuarios() {
+		return usuarioRepository.findAll();
+	}
+
 }

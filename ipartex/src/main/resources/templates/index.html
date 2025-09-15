@@ -13,8 +13,8 @@
 			<textarea style="width: 100%" placeholder="Escribe tu mensaje aquí"></textarea>
 		</div>
 		<div>
-			<select>
-				<option>Usuario1</option>
+			<select name="mensaje.usuario">
+				<option th:each="usuario: ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}">Usuario1</option>
 			</select>
 		</div>
 		<div>

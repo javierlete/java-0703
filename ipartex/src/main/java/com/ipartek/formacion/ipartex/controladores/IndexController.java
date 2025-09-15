@@ -9,14 +9,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.ipartek.formacion.ipartex.servicios.AnonimoService;
+import com.ipartek.formacion.ipartex.servicios.UsuarioService;
 
 @Controller
 public class IndexController {
 	@Autowired
 	private AnonimoService anonimoService;
 	
+	@Autowired
+	private UsuarioService usuarioService;
+	
 	@GetMapping("/")
-	public String listado(Model modelo) {
+	public String index(Model modelo) {
+		modelo.addAttribute("usuarios", usuarioService.listarUsuarios());
 		modelo.addAttribute("pagina", anonimoService.listarMensajes(PageRequest.of(0, 10, Sort.by(Direction.DESC, "fechaHora"))));
 		return "index";
 	}
