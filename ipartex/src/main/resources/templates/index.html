@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es" xmlns:th="https://www.thymeleaf.org">
+<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,18 +18,15 @@
 		<a class="text-light link-underline link-underline-opacity-0" href="index.html" th:href="@{/}">Ipartex</a>
 	</h1>
 
+	<h2 class="text-center" sec:authorize="isAuthenticated()" sec:authentication="name">USUARIO</h2>
+
 	<main class="container mt-4 mb-5">
-		<form class="mb-5" th:action="@{/mensajes}" method="post">
+		<form sec:authorize="isAuthenticated()" class="mb-5" th:action="@{/mensajes}" method="post">
 			<div class="mb-2">
 				<textarea class="form-control" name="texto" style="width: 100%"
 					placeholder="Escribe tu mensaje aquí"></textarea>
 			</div>
-			<div class="mb-2">
-				<select class="form-select" name="usuario">
-					<option th:each="usuario: ${usuarios}" th:value="${usuario.id}"
-						th:text="${usuario.nombre}">Usuario1</option>
-				</select>
-			</div>
+			
 			<div class="mb-2">
 				<button class="btn btn-primary">Enviar mensaje</button>
 			</div>

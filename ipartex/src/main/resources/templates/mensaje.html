@@ -34,17 +34,11 @@
 			</div>
 		</div>
 		
-		<form class="mb-5" th:action="@{/responder}" method="post">
+		<form sec:authorize="isAuthenticated()" class="mb-5" th:action="@{/responder}" method="post">
 			<input type="hidden" name="idMensajePadre" th:value="${mensaje.id}">
 			<div class="mb-2">
 				<textarea class="form-control" name="texto" style="width: 100%"
 					placeholder="Escribe tu respuesta aquí"></textarea>
-			</div>
-			<div class="mb-2">
-				<select class="form-select" name="usuario">
-					<option th:each="usuario: ${usuarios}" th:value="${usuario.id}"
-						th:text="${usuario.nombre}">Usuario1</option>
-				</select>
 			</div>
 			<div class="mb-2">
 				<button class="btn btn-primary">Enviar mensaje</button>

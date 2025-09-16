@@ -1,5 +1,7 @@
 package com.ipartek.formacion.ipartex.controladores;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -30,7 +32,9 @@ public class IndexController {
 	}
 	
 	@PostMapping("/mensajes")
-	public String mensajePost(Mensaje mensaje) {
+	public String mensajePost(Mensaje mensaje, Principal principal) {
+		var usuario = usuarioService.buscarPorEmail(principal.getName()).orElse(null);
+		mensaje.setUsuario(usuario);
 		usuarioService.enviarMensaje(mensaje);
 		
 		return "redirect:/";
@@ -46,7 +50,9 @@ public class IndexController {
 	}
 	
 	@PostMapping("/responder")
-	public String respuestaPost(Long idMensajePadre, Mensaje mensaje) {
+	public String respuestaPost(Long idMensajePadre, Mensaje mensaje, Principal principal) {
+		var usuario = usuarioService.buscarPorEmail(principal.getName()).orElse(null);
+		mensaje.setUsuario(usuario);
 		usuarioService.responderMensaje(idMensajePadre, mensaje);
 		
 		return "redirect:/mensaje?id=" + idMensajePadre;
