@@ -34,4 +34,17 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return usuarioRepository.findAll();
 	}
 
+	@Override
+	public Mensaje responderMensaje(Long idMensajePadre, Mensaje respuesta) {
+		var mensajePadre = Mensaje.builder().id(idMensajePadre).build();
+		
+		return responderMensaje(mensajePadre, respuesta);
+	}
+
+	@Override
+	public Mensaje responderMensaje(Mensaje mensajePadre, Mensaje respuesta) {
+		respuesta.setMensajePadre(mensajePadre);
+		return enviarMensaje(respuesta);
+	}
+
 }

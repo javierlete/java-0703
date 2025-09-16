@@ -16,7 +16,17 @@ public class AnonimoServiceImpl implements AnonimoService {
 	
 	@Override
 	public Page<Mensaje> listarMensajes(Pageable pageable) {
-		return mensajeRepository.findAll(pageable);
+		return listadoRespuestas(null, pageable);
+	}
+
+	@Override
+	public Mensaje obtenerMensaje(Long id) {
+		return mensajeRepository.findById(id).orElse(null);
+	}
+
+	@Override
+	public Page<Mensaje> listadoRespuestas(Long id, Pageable pageable) {
+		return mensajeRepository.findByMensajePadreId(id, pageable);
 	}
 	
 }

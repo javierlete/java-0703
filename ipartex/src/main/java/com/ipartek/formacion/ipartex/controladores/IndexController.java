@@ -35,4 +35,20 @@ public class IndexController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("/mensaje")
+	public String mensaje(Long id, Model modelo) {
+		modelo.addAttribute("mensaje", anonimoService.obtenerMensaje(id));
+		modelo.addAttribute("usuarios", usuarioService.listarUsuarios());
+		modelo.addAttribute("pagina", anonimoService.listadoRespuestas(id, PageRequest.of(0, 10, Sort.by(Direction.DESC, "fechaHora"))));
+		
+		return "mensaje";
+	}
+	
+	@PostMapping("/responder")
+	public String respuestaPost(Long idMensajePadre, Mensaje mensaje) {
+		usuarioService.responderMensaje(idMensajePadre, mensaje);
+		
+		return "redirect:/mensaje?id=" + idMensajePadre;
+	}
 }

@@ -45,4 +45,7 @@ public class Mensaje {
 	@NotNull
 	@ManyToOne
 	private Usuario usuario;
+	
+	@ManyToOne
+	private Mensaje mensajePadre;
 }
