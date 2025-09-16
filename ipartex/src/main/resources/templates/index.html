@@ -39,7 +39,7 @@
 			<div class="card mb-2">
 				<div class="card-body">
 					<div class="d-flex justify-content-between align-items-baseline">
-						<h5 class="card-title" th:text="${mensaje.usuario.nombre}">Card
+						<h5 class="card-title" th:text="${mensaje.nombreUsuario}">Card
 							title</h5>
 						<h6 class="card-subtitle mb-2 text-body-secondary"
 							th:text="${#temporals.format(mensaje.fechaHora, 'dd ''de'' MMMM ''de'' yyyy HH:mm')}">Card
@@ -48,7 +48,7 @@
 					<p class="card-text" th:text="${mensaje.texto}">Some quick
 						example text to build on the card title and make up the bulk of
 						the card’s content.</p>
-					<a href="mensaje.html" th:href="@{/mensaje(id=${mensaje.id})}" class="card-link"><i class="bi bi-chat"></i></a>
+					<a href="mensaje.html" th:href="@{/mensaje(id=${mensaje.id})}" class="card-link link-underline link-underline-opacity-0"><span th:text="${mensaje.numeroRespuestas}">1234</span> <i class="bi bi-chat"></i></a>
 				</div>
 			</div>
 		</th:block>

@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.ipartek.formacion.ipartex.dtos.MensajeDto;
 import com.ipartek.formacion.ipartex.entidades.Mensaje;
 import com.ipartek.formacion.ipartex.repositorios.MensajeRepository;
 
@@ -15,7 +16,7 @@ public class AnonimoServiceImpl implements AnonimoService {
 	private MensajeRepository mensajeRepository;
 	
 	@Override
-	public Page<Mensaje> listarMensajes(Pageable pageable) {
+	public Page<MensajeDto> listarMensajes(Pageable pageable) {
 		return listadoRespuestas(null, pageable);
 	}
 
@@ -25,7 +26,7 @@ public class AnonimoServiceImpl implements AnonimoService {
 	}
 
 	@Override
-	public Page<Mensaje> listadoRespuestas(Long id, Pageable pageable) {
+	public Page<MensajeDto> listadoRespuestas(Long id, Pageable pageable) {
 		return mensajeRepository.findByMensajePadreId(id, pageable);
 	}
 	
