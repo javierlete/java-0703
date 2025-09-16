@@ -1,0 +1,39 @@
+<!doctype html>
+<html th:fragment="plantilla (contenido)" lang="es"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ipartex</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+	<h1 class="p-2 text-bg-dark text-center">
+		<a class="text-light link-underline link-underline-opacity-0"
+			href="index.html" th:href="@{/}">IPARTEX</a>
+	</h1>
+
+	<h2 class="text-center" sec:authorize="isAuthenticated()"
+		sec:authentication="name">USUARIO</h2>
+
+	<main th:replace="${contenido}" class="container mt-4 mb-5">
+		CONTENIDO</main>
+
+	<footer class="p-2 text-bg-dark text-center"> &copy; 2025
+		Javier Lete </footer>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+		crossorigin="anonymous"></script>
+</body>
+</html>
+

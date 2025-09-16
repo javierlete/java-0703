@@ -1,69 +1,44 @@
 <!doctype html>
-<html lang="es" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ipartex</title>
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-</head>
-<body>
-
-	<h1 class="p-2 text-bg-dark text-center">
-		<a class="text-light link-underline link-underline-opacity-0" href="index.html" th:href="@{/}">Ipartex</a>
-	</h1>
-
-	<h2 class="text-center" sec:authorize="isAuthenticated()" sec:authentication="name">USUARIO</h2>
-
-	<main class="container mt-4 mb-5">
-		<form sec:authorize="isAuthenticated()" class="mb-5" th:action="@{/mensajes}" method="post">
-			<div class="mb-2">
-				<textarea class="form-control" name="texto" style="width: 100%"
-					placeholder="Escribe tu mensaje aquí"></textarea>
-			</div>
-			
-			<div class="mb-2">
-				<button class="btn btn-primary">Enviar mensaje</button>
-			</div>
-		</form>
-
-		<th:block th:each="mensaje: ${pagina.content}">
-			<div class="card mb-2">
-				<div class="card-body">
-					<div class="d-flex justify-content-between align-items-baseline">
-						<h5 class="card-title" th:text="${mensaje.nombreUsuario}">Card
-							title</h5>
-						<h6 class="card-subtitle mb-2 text-body-secondary"
-							th:text="${#temporals.format(mensaje.fechaHora, 'dd ''de'' MMMM ''de'' yyyy HH:mm')}">Card
-							subtitle</h6>
-					</div>
-					<p class="card-text" th:text="${mensaje.texto}">Some quick
-						example text to build on the card title and make up the bulk of
-						the card’s content.</p>
-					<a href="mensaje.html" th:href="@{/mensaje(id=${mensaje.id})}" class="card-link link-underline link-underline-opacity-0"><span th:text="${mensaje.numeroRespuestas}">1234</span> <i class="bi bi-chat"></i></a>
-				</div>
-			</div>
-		</th:block>
-
-		<div class="text-center">
-			<a class="lead" href="#"
-				th:if="${pagina.size < pagina.totalElements}"
-				th:href="@{/(numeroMensajes=${pagina.size + 2})}">Mostrar más</a>
+<html th:replace="~{_global :: plantilla(~{::main})}"
+	xmlns:th="https://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<main class="container mt-4 mb-5">
+	<form sec:authorize="isAuthenticated()" class="mb-5"
+		th:action="@{/mensajes}" method="post">
+		<div class="mb-2">
+			<textarea class="form-control" name="texto" style="width: 100%"
+				placeholder="Escribe tu mensaje aquí"></textarea>
 		</div>
 
-	</main>
-	<footer class="p-2 text-bg-dark text-center"> &copy; 2025
-		Javier Lete </footer>
+		<div class="mb-2">
+			<button class="btn btn-primary">Enviar mensaje</button>
+		</div>
+	</form>
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-		crossorigin="anonymous"></script>
-</body>
-</html>
+	<th:block th:each="mensaje: ${pagina.content}">
+		<div class="card mb-2">
+			<div class="card-body">
+				<div class="d-flex justify-content-between align-items-baseline">
+					<h5 class="card-title" th:text="${mensaje.nombreUsuario}">Card
+						title</h5>
+					<h6 class="card-subtitle mb-2 text-body-secondary"
+						th:text="${#temporals.format(mensaje.fechaHora, 'dd ''de'' MMMM ''de'' yyyy HH:mm')}">Card
+						subtitle</h6>
+				</div>
+				<p class="card-text" th:text="${mensaje.texto}">Some quick
+					example text to build on the card title and make up the bulk of the
+					card’s content.</p>
+				<a href="mensaje.html" th:href="@{/mensaje(id=${mensaje.id})}"
+					class="card-link link-underline link-underline-opacity-0"><span
+					th:text="${mensaje.numeroRespuestas}">1234</span> <i
+					class="bi bi-chat"></i></a>
+			</div>
+		</div>
+	</th:block>
 
+	<div class="text-center">
+		<a class="lead" href="#" th:if="${pagina.size < pagina.totalElements}"
+			th:href="@{/(numeroMensajes=${pagina.size + 2})}">Mostrar más</a>
+	</div>
+
+</main>
