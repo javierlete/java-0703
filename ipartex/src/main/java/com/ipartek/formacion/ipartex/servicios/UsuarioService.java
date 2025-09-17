@@ -11,4 +11,5 @@ public interface UsuarioService {
 	Mensaje responderMensaje(Long idMensajePadre, Mensaje respuesta);
 	Mensaje responderMensaje(Mensaje mensajePadre, Mensaje respuesta);
 	Iterable<Usuario> listarUsuarios();
+	void meGusta(Long idMensaje, Long idUsuario);
 }

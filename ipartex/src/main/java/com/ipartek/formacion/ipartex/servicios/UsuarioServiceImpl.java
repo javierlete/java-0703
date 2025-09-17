@@ -47,4 +47,14 @@ public class UsuarioServiceImpl implements UsuarioService {
 		return enviarMensaje(respuesta);
 	}
 
+	@Override
+	public void meGusta(Long idMensaje, Long idUsuario) {
+		var mensaje = mensajeRepository.findById(idMensaje).orElse(null);
+		var usuario = usuarioRepository.findById(idUsuario).orElse(null);
+		
+		mensaje.getUsuariosQueLesGusta().add(usuario);
+		
+		mensajeRepository.save(mensaje);
+	}
+
 }

@@ -57,4 +57,13 @@ public class IndexController {
 		
 		return "redirect:/mensaje?id=" + idMensajePadre;
 	}
+	
+	@GetMapping("/megusta")
+	public String megusta(Long id, Principal principal) {
+		var usuario = usuarioService.buscarPorEmail(principal.getName()).orElse(null);
+		
+		usuarioService.meGusta(id, usuario.getId());
+		
+		return "redirect:/mensaje?id=" + id;
+	}
 }
