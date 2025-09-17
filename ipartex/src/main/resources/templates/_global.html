@@ -16,14 +16,19 @@
 </head>
 <body>
 
-	<h1 class="p-2 text-bg-dark text-center">
-		<a class="text-light link-underline link-underline-opacity-0"
-			href="index.html" th:href="@{/}">IPARTEX</a>
-	</h1>
+	<header class="p-2 text-bg-dark text-center">
+		<h1>
+			<a class="text-light link-underline link-underline-opacity-0"
+				href="index.html" th:href="@{/}">IPARTEX</a>
+		</h1>
 
-	<h2 class="text-center" sec:authorize="isAuthenticated()"
-		sec:authentication="name">USUARIO</h2>
-
+		<h2 class="text-center" sec:authorize="isAuthenticated()"
+			sec:authentication="name">USUARIO</h2>
+		
+		<a class="text-light link-underline link-underline-opacity-0" sec:authorize="!isAuthenticated()" href="login.html" th:href="@{/login}">Login</a>
+		<a class="text-light link-underline link-underline-opacity-0" sec:authorize="isAuthenticated()" href="index.html" th:href="@{/logout}">Logout</a>
+	</header>
+	
 	<main th:replace="${contenido}" class="container mt-4 mb-5">
 		CONTENIDO</main>
 

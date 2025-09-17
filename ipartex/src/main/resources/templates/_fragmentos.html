@@ -51,7 +51,7 @@
 	</th:block>
 
 	<div class="text-center">
-		<a class="lead" href="#" th:if="${pagina.size < pagina.totalElements}"
+		<a class="lead link-underline link-underline-opacity-0" href="#" th:if="${pagina.size < pagina.totalElements}"
 			th:href="@{/(numeroMensajes=${pagina.size + 2})}">Mostrar más</a>
 	</div>
 </div>
