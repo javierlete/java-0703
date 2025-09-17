@@ -1,5 +1,7 @@
 package com.ipartek.formacion.ipartex.repositorios;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -13,7 +15,17 @@ public interface MensajeRepository extends CrudRepository<Mensaje, Long>, Paging
 
 	@Query("""
 			select new com.ipartek.formacion.ipartex.dtos.MensajeDto(
-				m.id, m.usuario.nombre, m.fechaHora, m.texto, count(r.id)) 
+				m.id, m.usuario.nombre, m.fechaHora, m.texto, count(r.id), m.mensajePadre.id) 
+			from Mensaje m 
+			left join Mensaje r on r.mensajePadre.id = m.id
+			where m.id = :id
+			group by m.id, m.usuario.nombre, m.fechaHora, m.texto
+			""")
+	Optional<MensajeDto> obtenerPorId(Long id);
+	
+	@Query("""
+			select new com.ipartek.formacion.ipartex.dtos.MensajeDto(
+				m.id, m.usuario.nombre, m.fechaHora, m.texto, count(r.id), m.mensajePadre.id) 
 			from Mensaje m 
 			left join Mensaje r on r.mensajePadre.id = m.id
 			where m.mensajePadre.id = :id or (:id is null and m.mensajePadre.id is null)

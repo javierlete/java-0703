@@ -6,7 +6,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.ipartex.dtos.MensajeDto;
-import com.ipartek.formacion.ipartex.entidades.Mensaje;
 import com.ipartek.formacion.ipartex.repositorios.MensajeRepository;
 
 @Service
@@ -21,8 +20,8 @@ public class AnonimoServiceImpl implements AnonimoService {
 	}
 
 	@Override
-	public Mensaje obtenerMensaje(Long id) {
-		return mensajeRepository.findById(id).orElse(null);
+	public MensajeDto obtenerMensaje(Long id) {
+		return mensajeRepository.obtenerPorId(id).orElse(null);
 	}
 
 	@Override
